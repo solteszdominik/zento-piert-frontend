@@ -1,6 +1,7 @@
 import type { Product } from "@/types/product";
 
 export const products: Product[] = [
+  // napkins
   {
     id: "1",
     name: "Éttermi szalvéta",
@@ -9,7 +10,7 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
-    imageUrl: "/images/Szalvéta_Éttermi_600_l_(2).jpg",
+    imageUrl: "/images/napkins/Szalvéta_Éttermi_600_l_(2).jpg",
   },
   {
     id: "2",
@@ -19,7 +20,7 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
-    imageUrl: "/images/Szalvéta_Harmónia_fehér_80_db_-_os.jpg",
+    imageUrl: "/images/napkins/Szalvéta_Harmónia_fehér_80_db_-_os.jpg",
   },
   {
     id: "3",
@@ -29,25 +30,36 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
-    imageUrl: "/images/Szalvéta_harmónia_kockás_80_db_-_os.jpg",
+    imageUrl: "/images/napkins/Szalvéta_harmónia_kockás_80_db_-_os.jpg",
+  },
+
+  // tissues
+  {
+    id: "14",
+    name: "Papírzsebkendő Harmónia, 100 lapos, I. o. 4 rétegű",
+    slug: "papirzsebkendo-harmonia",
+    category: "tissues",
+    description: "Puha, praktikus kiszerelésű, 4 rétegű papírzsebkendő.",
+    isFeatured: true,
+    imageUrl: "/images/tissues/Papírzsebkendő_Harmónia_4_rétegű.jpg",
   },
   {
     id: "4",
-    name: "Papírzsebkendő Lady, 100 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő Lady, 100 lapos, I. o., 3 rétegű",
     slug: "papirzsebkendo-lady",
     category: "tissues",
     description: "Puha, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_Lady_100_l(2019.).jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_Lady_100_l(2019.).jpg",
   },
   {
     id: "20",
-    name: "Papírzsebkendő Lady soft, 100 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő Lady soft, 100 lapos, I. o., 3 rétegű",
     slug: "papirzsebkendo-lady-soft",
     category: "tissues",
     description: "Puha, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_Lady_Soft_100_db-os.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_Lady_Soft_100_db-os.jpg",
   },
   {
     id: "9",
@@ -56,7 +68,7 @@ export const products: Product[] = [
     category: "tissues",
     description: "Puha, barack illatú, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_PRIVÁT_BARACK.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_BARACK.jpg",
   },
   {
     id: "10",
@@ -66,54 +78,74 @@ export const products: Product[] = [
     description:
       "Puha, jázmin-orgona illatú, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_PRIVÁT_JÁZMIN-ORGONA.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_JÁZMIN-ORGONA.jpg",
   },
   {
     id: "11",
-    name: "Papírzsebkendő PRIVÁT bubble gum, 100 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő PRIVÁT bubble gum, 100 lapos, I. o., 3 rétegű",
     slug: "papirzsebkendo-privat-bubble-gum",
     category: "tissues",
     description: "Puha, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_PRIVÁT_Bubble_Gum.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_Bubble_Gum.jpg",
   },
   {
     id: "12",
-    name: "Papírzsebkendő PRIVÁT aloe vera, 100 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő PRIVÁT aloe vera, 100 lapos, I. o., 3 rétegű",
     slug: "papirzsebkendo-privat-aloe-vera",
     category: "tissues",
     description:
       "Puha, aloe vera illatú, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_PRIVÁT_Aloe_Vera.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_Aloe_Vera.jpg",
   },
   {
     id: "13",
-    name: "Papírzsebkendő Pézsé, 100 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő Pézsé, 100 lapos, I. o., 3 rétegű",
     slug: "papirzsebkendo-pezse",
     category: "tissues",
     description: "Puha, praktikus kiszerelésű papírzsebkendő.",
     isFeatured: true,
     imageUrl:
-      "/images/Papírzsebkendő_PÉZSÉ_3_rétegű_100_db-os_papírzsebkendő(2).jpg",
+      "/images/tissues/Papírzsebkendő_PÉZSÉ_3_rétegű_100_db-os_papírzsebkendő(2).jpg",
   },
   {
     id: "14",
-    name: "Papírzsebkendő Harmónia, 100 lapos, I. osztályú, 4 rétegű",
-    slug: "papirzsebkendo-harmonia",
-    category: "tissues",
-    description: "Puha, praktikus kiszerelésű, 4 rétegű papírzsebkendő.",
-    isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_Harmónia_4_rétegű.jpg",
-  },
-  {
-    id: "14",
-    name: "Papírzsebkendő PRIVÁT, 10 lapos, I. osztályú, 3 rétegű",
+    name: "Papírzsebkendő PRIVÁT, 10 lapos visszazárható, I. o., 3 rétegű",
     slug: "papirzsebkendo-privat-10-lapos",
     category: "tissues",
     description: "Puha, praktikus kiszerelésű.",
     isFeatured: true,
-    imageUrl: "/images/Papírzsebkendő_Harmónia_4_rétegű.jpg",
+    imageUrl: "/images/tissues/Papírzsebkendő_10_l_NATUR_PRIVÁT_(2)_conv.jpg",
+  },
+
+  // foils
+
+  {
+    id: "6",
+    name: "Alufólia",
+    slug: "alufolia",
+    category: "aluminium-foil",
+    description: "Ételek tárolásához, sütéshez és csomagoláshoz.",
+    imageUrl: "/images/foils/Alufólia_100_l_(1).jpg",
+  },
+
+  // others
+  {
+    id: "7",
+    name: "Papírzacskó",
+    slug: "papirzacskok",
+    category: "paper-bags",
+    description: "Csomagoláshoz használható papírzacskók többféle méretben.",
+    imageUrl: "/images/others/Papírzacskó_100_l_(1).jpg",
+  },
+  {
+    id: "8",
+    name: "Zsírpapír",
+    slug: "zsirpapir",
+    category: "greaseproof-paper",
+    description: "Élelmiszer-csomagoláshoz ideális papírtermék.",
+    imageUrl: "/images/others/Zsírpapír_100_l_(1).jpg",
   },
   {
     id: "5",
@@ -122,30 +154,6 @@ export const products: Product[] = [
     category: "baking-paper",
     description: "Konyhai sütéshez használható, praktikus sütőpapír.",
     isFeatured: true,
-    imageUrl: "/images/products/Sütőpapír_8_fm_l_(1).jpg",
-  },
-  {
-    id: "6",
-    name: "Alufólia",
-    slug: "alufolia",
-    category: "aluminium-foil",
-    description: "Ételek tárolásához, sütéshez és csomagoláshoz.",
-    imageUrl: "/images/products/Alufólia_100_l_(1).jpg",
-  },
-  {
-    id: "7",
-    name: "Papírzacskó",
-    slug: "papirzacskok",
-    category: "paper-bags",
-    description: "Csomagoláshoz használható papírzacskók többféle méretben.",
-    imageUrl: "/images/products/Papírzacskó_100_l_(1).jpg",
-  },
-  {
-    id: "8",
-    name: "Zsírpapír",
-    slug: "zsirpapir",
-    category: "greaseproof-paper",
-    description: "Élelmiszer-csomagoláshoz ideális papírtermék.",
-    imageUrl: "/images/products/Zsírpapír_100_l_(1).jpg",
+    imageUrl: "/images/others/Sütőpapír_8_fm_l_(1).jpg",
   },
 ];
