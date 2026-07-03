@@ -14,19 +14,26 @@ export default function AboutPreview() {
           </p>
 
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-blue-950 md:text-4xl">
-            Megbízható papírtermék-beszállító cégeknek és lakossági vásárlóknak.
+            Az abaújszántói Zentó – Piért Kft. nevében köszöntöm Önt! Az
+            alábbiakban bemutatom társaságunkat.
           </h2>
 
           <p className="mb-6 leading-7 text-slate-600">
-            Termékkínálatunkat úgy alakítottuk ki, hogy a mindennapi háztartási,
-            vendéglátói és kereskedelmi felhasználásra is egyszerű, átlátható
-            megoldást nyújtson.
+            1991 – es megalakulásunk óta (Zentó Bt – Soltész Papír Kft) jelentős
+            fejlődésen, átalakuláson vagyunk túl, a kezdeti 1 db papírzacskó
+            gyártó gépet komoly géppark váltotta fel, jelenleg az alábbi
+            gépekkel rendelkezünk:
           </p>
 
           <p className="mb-8 leading-7 text-slate-600">
-            A cél egy könnyen kezelhető, modern webshop, ahol a termékek gyorsan
-            áttekinthetők, később pedig rendelhetők és admin felületen
-            kezelhetők.
+            Több mint 3000 m2 saját tulajdonú üzem, raktár, iroda biztosítja a
+            zavartalan működést. <br />
+            20 féle saját gyártású termékkel rendelkezünk, 20 fő munkatárssal
+            látjuk el feladatainkat, ezen kívül 2 rehabilitációs céggel vagyunk
+            kapcsolatban, ahol 20 -30 fő csökkent munkaképességű embernek
+            folyamatosan csomagolási munkát biztosítunk. <br />
+            Szállításainkat saját illetve bérelt teherautókkal, kamionokkal
+            látjuk el.
           </p>
 
           <Link

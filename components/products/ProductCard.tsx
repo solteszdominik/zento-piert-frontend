@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-no-undef */
 import type { Product } from "@/types/product";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -8,7 +10,15 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group rounded-3xl border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100">
-      <div className="mb-5 aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-50 to-blue-200" />
+      <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50">
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          fill
+          className="object-contain p-4 transition duration-300 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
 
       <h3 className="mb-2 text-lg font-bold text-blue-950">{product.name}</h3>
 

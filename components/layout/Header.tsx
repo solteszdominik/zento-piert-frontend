@@ -13,6 +13,7 @@ export default function Header() {
           <Link href="/products">Termékek</Link>
           <Link href="/about">Rólunk</Link>
           <Link href="/contact">Kapcsolat</Link>
+          <Link href="/tenders">Pályázatok</Link>
         </nav>
 
         <Link

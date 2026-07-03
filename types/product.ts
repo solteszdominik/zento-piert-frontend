@@ -14,6 +14,7 @@ export interface Product {
   category: ProductCategory;
   description: string;
   price?: number;
-  imageUrl?: string;
+  imageUrl: string;
   isFeatured?: boolean;
+  isAvailable?: boolean;
 }
