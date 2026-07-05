@@ -8,7 +8,7 @@ export const tenders: Tender[] = [
     company: "ZENTO-PIÉRT KFT",
     amount: "20 millió forint",
     description: "Köszönjük a Magyar Kormány és az Európai Unió támogatását.",
-    logo: "/images/Projekttabla1.jpg",
+    logo: "/images/tenders/Projekttabla1.jpg",
   },
   {
     id: "keszletek-alapanyagok",
@@ -17,6 +17,6 @@ export const tenders: Tender[] = [
     company: "ZENTO-PIÉRT KFT",
     amount: "25 millió forint",
     description: "Köszönjük a Magyar Állam és az Európai Unió támogatását.",
-    logo: "/images/Projekttabla2.jpg",
+    logo: "/images/tenders/Projekttabla2.jpg",
   },
 ];

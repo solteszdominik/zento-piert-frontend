@@ -40,7 +40,7 @@ export default function Hero() {
           <div className="aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br from-blue-100 via-white to-blue-300" />
 
           <div className="absolute -bottom-6 -left-6 rounded-2xl bg-blue-950 p-5 text-white shadow-lg">
-            <p className="text-3xl font-bold">20+</p>
+            <p className="text-3xl font-bold">7</p>
             <p className="text-sm text-blue-100">termékkategória</p>
           </div>
         </div>

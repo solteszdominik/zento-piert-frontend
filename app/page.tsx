@@ -1,7 +1,7 @@
 import AboutPreview from "@/components/home/AboutPreview";
 import CategoryPreview from "@/components/home/CategoryPreview";
 import ContactCta from "@/components/home/ContactCta";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
+// import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
 import TendersSection from "@/components/home/TendersSection";
 import VideoPreview from "@/components/home/VideoPreview";
@@ -18,7 +18,7 @@ export default function Home() {
         <AboutPreview />
         <WhyChooseUs />
         <CategoryPreview />
-        <FeaturedProducts />
+        {/* <FeaturedProducts /> */}
         <VideoPreview />
         <ContactCta />
         <TendersSection />
