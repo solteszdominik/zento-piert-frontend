@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { categories } from "@/data/categories";
 import { products } from "@/data/products";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -11,7 +12,9 @@ interface ProductDetailPageProps {
   }>;
 }
 
-export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
+export default async function ProductDetailPage({
+  params,
+}: ProductDetailPageProps) {
   const { slug } = await params;
   const product = products.find((item) => item.slug === slug);
 
@@ -62,9 +65,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                   Ajánlatkérés
                 </Link>
 
-                <button className="rounded-full border border-blue-200 bg-white px-6 py-3 font-semibold text-blue-900 transition hover:border-blue-400">
-                  Kosárba rakás később
-                </button>
+                <AddToCartButton product={product} />
               </div>
             </div>
           </div>

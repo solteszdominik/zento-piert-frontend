@@ -17,10 +17,10 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/contact"
+          href="/cart"
           className="rounded-full bg-blue-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-800"
         >
-          Ajánlatkérés
+          Kosár
         </Link>
       </div>
     </header>

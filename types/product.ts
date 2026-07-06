@@ -13,7 +13,7 @@ export interface Product {
   slug: string;
   category: ProductCategory;
   description: string;
-  price?: number;
+  price: number;
   imageUrl: string;
   isFeatured?: boolean;
   isAvailable?: boolean;
