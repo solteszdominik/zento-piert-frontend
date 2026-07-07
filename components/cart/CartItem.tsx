@@ -14,63 +14,69 @@ export default function CartItem({ item }: CartItemProps) {
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
 
+  const itemTotal = item.product.price * item.quantity;
+
   return (
-    <article className="grid gap-5 rounded-3xl border border-blue-100 bg-white p-5 shadow-sm md:grid-cols-[140px_1fr_auto] md:items-center">
+    <article className="flex gap-4 rounded-3xl border border-blue-100 bg-white p-4 shadow-sm">
       <Link
         href={`/products/${item.product.slug}`}
-        className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50"
+        className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-slate-50"
       >
         <Image
           src={item.product.imageUrl}
           alt={item.product.name}
           fill
-          className="object-contain p-3"
-          sizes="140px"
+          className="object-contain p-2"
+          sizes="96px"
         />
-        <p className="mt-2 font-semibold text-blue-900">
-          {item.product.price.toLocaleString("hu-HU")} Ft / db
-        </p>
       </Link>
 
-      <div>
-        <h2 className="text-lg font-bold text-blue-950">{item.product.name}</h2>
+      <div className="flex flex-1 flex-col">
+        <div className="flex justify-between gap-4">
+          <div>
+            <h2 className="font-bold text-blue-950">{item.product.name}</h2>
 
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
-          {item.product.description}
-        </p>
+            <p className="mt-1 text-sm text-slate-500">
+              {item.product.price.toLocaleString("hu-HU")} Ft / db
+            </p>
+          </div>
 
-        <button
-          type="button"
-          onClick={() => removeItem(item.product.id)}
-          className="mt-3 text-sm font-semibold text-red-600 hover:text-red-700"
-        >
-          Eltávolítás
-        </button>
-      </div>
-
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() => decreaseQuantity(item.product.id)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-blue-100 text-blue-900 hover:bg-blue-50"
-        >
-          -
-        </button>
-
-        <span className="min-w-8 text-center font-bold text-blue-950">
-          {item.quantity}
-          <p className="text-sm font-semibold text-blue-950">
-            {(item.product.price * item.quantity).toLocaleString("hu-HU")} Ft
+          <p className="font-bold text-blue-950">
+            {itemTotal.toLocaleString("hu-HU")} Ft
           </p>
-        </span>
+        </div>
 
-        <button
-          type="button"
-          onClick={() => increaseQuantity(item.product.id)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-blue-100 text-blue-900 hover:bg-blue-50"
-        >
-          +
-        </button>
+        <div className="mt-auto flex items-center justify-between pt-4">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => decreaseQuantity(item.product.id)}
+              className="h-8 w-8 rounded-full border border-blue-100 font-bold text-blue-900 hover:bg-blue-50"
+            >
+              -
+            </button>
+
+            <span className="min-w-6 text-center font-bold">
+              {item.quantity}
+            </span>
+
+            <button
+              type="button"
+              onClick={() => increaseQuantity(item.product.id)}
+              className="h-8 w-8 rounded-full border border-blue-100 font-bold text-blue-900 hover:bg-blue-50"
+            >
+              +
+            </button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => removeItem(item.product.id)}
+            className="text-sm font-semibold text-red-600 hover:text-red-700"
+          >
+            Törlés
+          </button>
+        </div>
       </div>
     </article>
   );

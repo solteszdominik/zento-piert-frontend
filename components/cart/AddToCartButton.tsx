@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { Product } from "@/types/product";
 import { useCartStore } from "@/features/cart/cart.store";
 
@@ -9,14 +10,32 @@ interface AddToCartButtonProps {
 
 export default function AddToCartButton({ product }: AddToCartButtonProps) {
   const addItem = useCartStore((state) => state.addItem);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleAddToCart = () => {
+    addItem(product);
+    setShowMessage(true);
+
+    window.setTimeout(() => {
+      setShowMessage(false);
+    }, 1800);
+  };
 
   return (
-    <button
-      type="button"
-      onClick={() => addItem(product)}
-      className="rounded-full border border-blue-200 bg-white px-6 py-3 font-semibold text-blue-900 transition hover:border-blue-400 hover:bg-blue-50"
-    >
-      Kosárba rakom
-    </button>
+    <div className="relative">
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        className="w-full rounded-full bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800"
+      >
+        Kosárba
+      </button>
+
+      {showMessage && (
+        <div className="absolute left-1/2 top-full z-20 mt-3 w-max -translate-x-1/2 rounded-full bg-blue-950 px-4 py-2 text-xs font-semibold text-white shadow-lg">
+          Termék a kosárba került
+        </div>
+      )}
+    </div>
   );
 }

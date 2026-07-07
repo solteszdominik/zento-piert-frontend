@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeaderCartButton from "../cart/HeaderCartButton";
 
 export default function Header() {
   return (
@@ -16,12 +17,7 @@ export default function Header() {
           <Link href="/tenders">Pályázatok</Link>
         </nav>
 
-        <Link
-          href="/cart"
-          className="rounded-full bg-blue-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-800"
-        >
-          Kosár
-        </Link>
+        <HeaderCartButton />
       </div>
     </header>
   );

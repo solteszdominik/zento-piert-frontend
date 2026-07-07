@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-no-undef */
-import type { Product } from "@/types/product";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import AddToCartButton from "@/components/cart/AddToCartButton";
+import type { Product } from "@/types/product";
 
 interface ProductCardProps {
   product: Product;
@@ -9,8 +9,11 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="group rounded-3xl border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100">
-      <div className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50">
+    <article className="group flex h-full flex-col rounded-3xl border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100">
+      <Link
+        href={`/products/${product.slug}`}
+        className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50"
+      >
         <Image
           src={product.imageUrl}
           alt={product.name}
@@ -18,25 +21,29 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-contain p-4 transition duration-300 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-      </div>
+      </Link>
 
-      <h3 className="mb-2 text-lg font-bold text-blue-950">{product.name}</h3>
+      <div className="flex flex-1 flex-col">
+        <h3 className="text-lg font-bold text-blue-950">{product.name}</h3>
 
-      <p className="mb-5 text-sm leading-6 text-slate-600">
-        {product.description}
-      </p>
+        <p className="mt-2 text-sm leading-6 text-slate-600">
+          {product.description}
+        </p>
 
-      <div className="flex items-center justify-between gap-4">
-        <Link
-          href={`/products/${product.slug}`}
-          className="text-sm font-semibold text-blue-700 transition hover:text-blue-900"
-        >
-          Részletek →
-        </Link>
+        <p className="mt-4 text-lg font-bold text-blue-900">
+          {product.price.toLocaleString("hu-HU")} Ft
+        </p>
 
-        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
-          Elérhető
-        </span>
+        <div className="mt-auto flex flex-col gap-3 pt-5">
+          <AddToCartButton product={product} />
+
+          <Link
+            href={`/products/${product.slug}`}
+            className="text-center text-sm font-semibold text-blue-700 transition hover:text-blue-900"
+          >
+            Részletek →
+          </Link>
+        </div>
       </div>
     </article>
   );
