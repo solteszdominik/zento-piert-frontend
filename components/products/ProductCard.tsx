@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import type { Product } from "@/types/product";
+import { formatPrice } from "@/lib/format";
 
 interface ProductCardProps {
   product: Product;
@@ -31,7 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </p>
 
         <p className="mt-4 text-lg font-bold text-blue-900">
-          {product.price.toLocaleString("hu-HU")} Ft
+          {formatPrice(product.price)}
         </p>
 
         <div className="mt-auto flex flex-col gap-3 pt-5">

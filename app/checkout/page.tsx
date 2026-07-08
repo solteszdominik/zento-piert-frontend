@@ -1,17 +1,25 @@
 "use client";
 
-import { submitCheckoutRequest } from "@/lib/checkout";
+import { createOrder } from "@/services/order.service";
+import type { CreateOrderPayload, OrderFormData } from "@/types/order";
 import { FormEvent, useState } from "react";
-import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useCartStore } from "@/features/cart/cart.store";
-import type {
-  CheckoutFormData,
-  CheckoutRequestPayload,
-} from "@/types/checkout";
+import { useToastStore } from "@/features/toast/toast.store";
+import { getCartTotalPrice } from "@/lib/cart";
+import { formatPrice } from "@/lib/format";
+import Button from "@/components/ui/Button";
+import Field from "@/components/ui/Field";
+import Input from "@/components/ui/Input";
+import Textarea from "@/components/ui/Textarea";
+import {
+  hasCheckoutErrors,
+  validateCheckoutForm,
+  type CheckoutFormErrors,
+} from "@/lib/validation/order";
 
-const initialFormData: CheckoutFormData = {
+const initialFormData: OrderFormData = {
   customerName: "",
   customerEmail: "",
   customerPhone: "",
@@ -22,6 +30,7 @@ const initialFormData: CheckoutFormData = {
 export default function CheckoutPage() {
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
+  const showToast = useToastStore((state) => state.showToast);
 
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,20 +40,36 @@ export default function CheckoutPage() {
     null,
   );
 
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
+  const totalPrice = getCartTotalPrice(items);
+  const [errors, setErrors] = useState<CheckoutFormErrors>({});
 
-  const handleChange = (field: keyof CheckoutFormData, value: string) => {
+  const handleChange = (field: keyof OrderFormData, value: string) => {
     setFormData((current) => ({
       ...current,
       [field]: value,
+    }));
+
+    setErrors((current) => ({
+      ...current,
+      [field]: undefined,
     }));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const validationErrors = validateCheckoutForm(formData);
+
+    if (hasCheckoutErrors(validationErrors)) {
+      setErrors(validationErrors);
+
+      showToast({
+        title: "Hiányzó vagy hibás adatok",
+        message: "Kérlek ellenőrizd a megadott adatokat.",
+        variant: "error",
+      });
+
+      return;
+    }
 
     if (items.length === 0) {
       setFeedbackType("error");
@@ -52,7 +77,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    const payload: CheckoutRequestPayload = {
+    const payload: CreateOrderPayload = {
       ...formData,
       items,
       totalPrice,
@@ -63,7 +88,7 @@ export default function CheckoutPage() {
       setFeedbackMessage(null);
       setFeedbackType(null);
 
-      const response = await submitCheckoutRequest(payload);
+      const response = await createOrder(payload);
 
       if (!response.success) {
         throw new Error(response.message);
@@ -72,15 +97,29 @@ export default function CheckoutPage() {
       setIsSubmitted(true);
       setFeedbackType("success");
       setFeedbackMessage(response.message);
+      showToast({
+        title: "Sikeres rendelés",
+        message: response.message,
+        variant: "success",
+      });
+
+      setErrors({});
       setFormData(initialFormData);
       clearCart();
     } catch (error) {
-      setFeedbackType("error");
-      setFeedbackMessage(
+      const message =
         error instanceof Error
           ? error.message
-          : "Nem sikerült elküldeni az ajánlatkérést.",
-      );
+          : "Nem sikerült elküldeni a rendelést.";
+
+      setFeedbackType("error");
+      setFeedbackMessage(message);
+
+      showToast({
+        title: "Hiba történt",
+        message,
+        variant: "error",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -123,12 +162,9 @@ export default function CheckoutPage() {
               Ajánlatkérés előtt adj hozzá termékeket a kosárhoz.
             </p>
 
-            <Link
-              href="/products"
-              className="mt-6 inline-flex rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
-            >
+            <Button href="/products" className="mt-6">
               Termékek megtekintése
-            </Link>
+            </Button>
           </div>
         ) : (
           <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_380px]">
@@ -137,76 +173,72 @@ export default function CheckoutPage() {
               className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm"
             >
               <div className="grid gap-5">
-                <label className="grid gap-2">
-                  <span className="font-semibold text-blue-950">Név *</span>
-                  <input
+                <Field label="Név" required error={errors.customerName}>
+                  <Input
                     required
+                    hasError={Boolean(errors.customerName)}
                     value={formData.customerName}
                     onChange={(event) =>
                       handleChange("customerName", event.target.value)
                     }
-                    className="rounded-2xl border border-blue-100 px-4 py-3 outline-none transition focus:border-blue-400"
                   />
-                </label>
+                </Field>
 
-                <label className="grid gap-2">
-                  <span className="font-semibold text-blue-950">E-mail *</span>
-                  <input
+                <Field label="E-mail" required error={errors.customerEmail}>
+                  <Input
                     required
                     type="email"
+                    hasError={Boolean(errors.customerEmail)}
                     value={formData.customerEmail}
                     onChange={(event) =>
                       handleChange("customerEmail", event.target.value)
                     }
-                    className="rounded-2xl border border-blue-100 px-4 py-3 outline-none transition focus:border-blue-400"
                   />
-                </label>
+                </Field>
 
-                <label className="grid gap-2">
-                  <span className="font-semibold text-blue-950">
-                    Telefonszám *
-                  </span>
-                  <input
+                <Field
+                  label="Telefonszám"
+                  required
+                  error={errors.customerPhone}
+                >
+                  <Input
                     required
+                    hasError={Boolean(errors.customerPhone)}
                     value={formData.customerPhone}
                     onChange={(event) =>
                       handleChange("customerPhone", event.target.value)
                     }
-                    className="rounded-2xl border border-blue-100 px-4 py-3 outline-none transition focus:border-blue-400"
                   />
-                </label>
+                </Field>
 
-                <label className="grid gap-2">
-                  <span className="font-semibold text-blue-950">Cégnév</span>
-                  <input
+                <Field label="Cégnév">
+                  <Input
                     value={formData.companyName}
                     onChange={(event) =>
                       handleChange("companyName", event.target.value)
                     }
-                    className="rounded-2xl border border-blue-100 px-4 py-3 outline-none transition focus:border-blue-400"
                   />
-                </label>
+                </Field>
 
-                <label className="grid gap-2">
-                  <span className="font-semibold text-blue-950">Üzenet</span>
-                  <textarea
+                <Field label="Üzenet">
+                  <Textarea
                     rows={5}
                     value={formData.message}
                     onChange={(event) =>
                       handleChange("message", event.target.value)
                     }
-                    className="resize-none rounded-2xl border border-blue-100 px-4 py-3 outline-none transition focus:border-blue-400"
                   />
-                </label>
+                </Field>
               </div>
 
-              <button
+              <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="mt-6 w-full rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-blue-300"
+                fullWidth
+                className="mt-6"
               >
                 {isSubmitting ? "Küldés..." : "Ajánlatkérés elküldése"}
-              </button>
+              </Button>
             </form>
 
             <aside className="h-fit rounded-3xl border border-blue-100 bg-blue-50 p-6">
@@ -225,16 +257,12 @@ export default function CheckoutPage() {
                         {item.product.name}
                       </p>
                       <p className="text-slate-600">
-                        {item.quantity} ×{" "}
-                        {item.product.price.toLocaleString("hu-HU")} Ft
+                        {item.quantity} × {formatPrice(item.product.price)}
                       </p>
                     </div>
 
                     <strong className="text-blue-950">
-                      {(item.product.price * item.quantity).toLocaleString(
-                        "hu-HU",
-                      )}{" "}
-                      Ft
+                      {formatPrice(item.product.price * item.quantity)}
                     </strong>
                   </div>
                 ))}
@@ -242,7 +270,7 @@ export default function CheckoutPage() {
 
               <div className="mt-6 flex justify-between text-lg font-bold text-blue-950">
                 <span>Összesen</span>
-                <span>{totalPrice.toLocaleString("hu-HU")} Ft</span>
+                <span>{formatPrice(totalPrice)}</span>
               </div>
             </aside>
           </div>

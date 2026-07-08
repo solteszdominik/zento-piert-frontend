@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "../ui/Button";
 
 export default function Hero() {
   return (
@@ -20,19 +20,11 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link
-              href="/products"
-              className="rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
-            >
-              Termékek megtekintése
-            </Link>
+            <Button href="/products">Termékek megtekintése</Button>
 
-            <Link
-              href="/contact"
-              className="rounded-full border border-blue-200 bg-white px-6 py-3 font-semibold text-blue-900 transition hover:border-blue-400"
-            >
+            <Button href="/contact" variant="secondary">
               Kapcsolatfelvétel
-            </Link>
+            </Button>
           </div>
         </div>
 

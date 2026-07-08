@@ -1,17 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { useCartStore } from "@/features/cart/cart.store";
+import { getCartTotalPrice, getCartTotalQuantity } from "@/lib/cart";
+import { formatPrice } from "@/lib/format";
+import Button from "../ui/Button";
 
 export default function CartSummary() {
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
 
-  const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
+  const totalQuantity = getCartTotalQuantity(items);
+  const totalPrice = getCartTotalPrice(items);
 
   return (
     <aside className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
@@ -30,24 +29,23 @@ export default function CartSummary() {
 
         <div className="flex justify-between border-t border-blue-200 pt-3 text-base">
           <span>Végösszeg</span>
-          <strong>{totalPrice.toLocaleString("hu-HU")} Ft</strong>
+          <strong>{formatPrice(totalPrice)}</strong>
         </div>
       </div>
 
-      <Link
-        href="/checkout"
-        className="mt-6 block rounded-full bg-blue-700 px-5 py-3 text-center font-semibold text-white transition hover:bg-blue-800"
-      >
+      <Button href="/checkout" fullWidth className="mt-6">
         Ajánlatkérés folytatása
-      </Link>
+      </Button>
 
-      <button
+      <Button
         type="button"
         onClick={clearCart}
-        className="mt-3 w-full rounded-full border border-blue-200 bg-white px-5 py-3 font-semibold text-blue-900 transition hover:border-blue-400"
+        variant="secondary"
+        fullWidth
+        className="mt-3"
       >
         Kosár ürítése
-      </button>
+      </Button>
     </aside>
   );
 }

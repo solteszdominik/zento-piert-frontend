@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import CartItem from "@/components/cart/CartItem";
 import CartSummary from "@/components/cart/CartSummary";
 import { useCartStore } from "@/features/cart/cart.store";
+import Button from "@/components/ui/Button";
 
 export default function CartPage() {
   const items = useCartStore((state) => state.items);
@@ -36,12 +36,9 @@ export default function CartPage() {
               Nézz körül a termékek között, és adj hozzá pár terméket.
             </p>
 
-            <Link
-              href="/products"
-              className="mt-6 inline-flex rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
-            >
+            <Button href="/products" className="mt-6">
               Termékek megtekintése
-            </Link>
+            </Button>
           </div>
         ) : (
           <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_360px]">

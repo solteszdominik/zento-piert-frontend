@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CartItem as CartItemType } from "@/types/cart";
 import { useCartStore } from "@/features/cart/cart.store";
+import { getCartItemTotal } from "@/lib/cart";
+import { formatPrice } from "@/lib/format";
 
 interface CartItemProps {
   item: CartItemType;
@@ -14,7 +16,7 @@ export default function CartItem({ item }: CartItemProps) {
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
 
-  const itemTotal = item.product.price * item.quantity;
+  const itemTotal = getCartItemTotal(item);
 
   return (
     <article className="flex gap-4 rounded-3xl border border-blue-100 bg-white p-4 shadow-sm">
@@ -37,13 +39,11 @@ export default function CartItem({ item }: CartItemProps) {
             <h2 className="font-bold text-blue-950">{item.product.name}</h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              {item.product.price.toLocaleString("hu-HU")} Ft / db
+              {formatPrice(item.product.price)} / db
             </p>
           </div>
 
-          <p className="font-bold text-blue-950">
-            {itemTotal.toLocaleString("hu-HU")} Ft
-          </p>
+          <p className="font-bold text-blue-950">{formatPrice(itemTotal)}</p>
         </div>
 
         <div className="mt-auto flex items-center justify-between pt-4">

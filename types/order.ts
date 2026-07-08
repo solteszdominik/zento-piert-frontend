@@ -1,6 +1,6 @@
 import type { CartItem } from "@/types/cart";
 
-export interface CheckoutFormData {
+export interface OrderFormData {
   customerName: string;
   customerEmail: string;
   customerPhone: string;
@@ -8,7 +8,12 @@ export interface CheckoutFormData {
   message: string;
 }
 
-export interface CheckoutRequestPayload extends CheckoutFormData {
+export interface CreateOrderPayload extends OrderFormData {
   items: CartItem[];
   totalPrice: number;
+}
+
+export interface OrderResponse {
+  success: boolean;
+  message: string;
 }
