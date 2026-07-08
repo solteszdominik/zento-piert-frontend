@@ -39,7 +39,7 @@ export default function CartItem({ item }: CartItemProps) {
             <h2 className="font-bold text-blue-950">{item.product.name}</h2>
 
             <p className="mt-1 text-sm text-slate-500">
-              {formatPrice(item.product.price)} / db
+              {formatPrice(item.product.price)} / {item.product.unit}
             </p>
           </div>
 

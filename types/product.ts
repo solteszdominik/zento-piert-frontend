@@ -17,4 +17,5 @@ export interface Product {
   imageUrl: string;
   isFeatured?: boolean;
   isAvailable?: boolean;
+  unit: "db" | "csomag" | "lap";
 }

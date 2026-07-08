@@ -22,7 +22,13 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
       variant: "success",
     });
   };
-
+  if (!product.isAvailable) {
+    return (
+      <Button type="button" disabled fullWidth size="sm">
+        Nem elérhető
+      </Button>
+    );
+  }
   return (
     <Button type="button" onClick={handleAddToCart} fullWidth size="sm">
       Kosárba

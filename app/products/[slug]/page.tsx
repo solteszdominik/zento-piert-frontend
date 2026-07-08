@@ -62,7 +62,7 @@ export default async function ProductDetailPage({
                   href="/contact"
                   className="rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
                 >
-                  Ajánlatkérés
+                  Rendelés leadása
                 </Link>
 
                 <AddToCartButton product={product} />

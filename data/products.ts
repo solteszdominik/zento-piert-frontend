@@ -10,8 +10,10 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/napkins/Szalvéta_Éttermi_600_l_(2).jpg",
     price: 1000,
+    unit: "db",
   },
   {
     id: "2",
@@ -21,8 +23,10 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/napkins/Szalvéta_Harmónia_fehér_80_db_-_os.jpg",
     price: 1200,
+    unit: "db",
   },
   {
     id: "3",
@@ -32,8 +36,10 @@ export const products: Product[] = [
     description:
       "Klasszikus éttermi szalvéta vendéglátáshoz és háztartási használatra.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/napkins/Szalvéta_harmónia_kockás_80_db_-_os.jpg",
     price: 1200,
+    unit: "db",
   },
 
   // tissues
@@ -44,8 +50,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 4 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_Harmónia_4_rétegű.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "4",
@@ -54,8 +62,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_Lady_100_l(2019.).jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "20",
@@ -64,8 +74,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_Lady_Soft_100_db-os.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "9",
@@ -74,8 +86,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_BARACK.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "10",
@@ -84,8 +98,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_JÁZMIN-ORGONA.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "11",
@@ -94,8 +110,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_Bubble_Gum.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "12",
@@ -104,8 +122,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_PRIVÁT_Aloe_Vera.jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "13",
@@ -114,9 +134,11 @@ export const products: Product[] = [
     category: "tissues",
     description: "100 lapos, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl:
       "/images/tissues/Papírzsebkendő_PÉZSÉ_3_rétegű_100_db-os_papírzsebkendő(2).jpg",
     price: 800,
+    unit: "db",
   },
   {
     id: "14",
@@ -125,8 +147,10 @@ export const products: Product[] = [
     category: "tissues",
     description: "10 lapos visszazárható, 1. osztályú, 3 rétegű",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/tissues/Papírzsebkendő_10_l_NATUR_PRIVÁT_(2)_conv.jpg",
     price: 800,
+    unit: "db",
   },
 
   // foils
@@ -137,8 +161,11 @@ export const products: Product[] = [
     slug: "alufolia-20m",
     category: "aluminium-foil",
     description: "Ételek tárolásához, sütéshez és csomagoláshoz.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/foils/Alufólia_20_fm_új_csom_2020..jpg",
     price: 1500,
+    unit: "db",
   },
   {
     id: "30",
@@ -146,8 +173,11 @@ export const products: Product[] = [
     slug: "alufolia-30m",
     category: "aluminium-foil",
     description: "Ételek tárolásához, sütéshez és csomagoláshoz.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/foils/Alufólia_30_fm_új_csom._2020.jpg",
     price: 2000,
+    unit: "db",
   },
 
   // cling-film
@@ -158,8 +188,11 @@ export const products: Product[] = [
     slug: "folpack-20m",
     category: "cling-film",
     description: "Ételek tárolásához és csomagoláshoz.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/foils/Folpack_20_fm..jpg",
     price: 1000,
+    unit: "db",
   },
 
   {
@@ -168,8 +201,11 @@ export const products: Product[] = [
     slug: "folpack-30m",
     category: "cling-film",
     description: "Ételek tárolásához és csomagoláshoz.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/foils/Folpack_30_fm..jpg",
     price: 1500,
+    unit: "db",
   },
 
   {
@@ -178,8 +214,11 @@ export const products: Product[] = [
     slug: "folpack-50m",
     category: "cling-film",
     description: "Ételek tárolásához és csomagoláshoz.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/foils/Folpack_50_fm..jpg",
     price: 2000,
+    unit: "db",
   },
 
   // baking-paper
@@ -191,8 +230,10 @@ export const products: Product[] = [
     category: "baking-paper",
     description: "Konyhai sütéshez használható, praktikus sütőpapír.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/baking_paper/Sütőpapír__8_fm_szilikonos.jpg",
     price: 1000,
+    unit: "db",
   },
   {
     id: "55",
@@ -201,8 +242,10 @@ export const products: Product[] = [
     category: "baking-paper",
     description: "Konyhai sütéshez használható, praktikus sütőpapír.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/baking_paper/Sütőpapír_8_fm_szilikonos(BARNA)..jpg",
     price: 1000,
+    unit: "db",
   },
   {
     id: "56",
@@ -211,8 +254,10 @@ export const products: Product[] = [
     category: "baking-paper",
     description: "Konyhai sütéshez használható, praktikus sütőpapír.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/baking_paper/Sütőpapír_15_fm.jpg",
     price: 1500,
+    unit: "db",
   },
   {
     id: "57",
@@ -221,8 +266,10 @@ export const products: Product[] = [
     category: "baking-paper",
     description: "Konyhai sütéshez használható, praktikus sütőpapír.",
     isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/baking_paper/Sütőpapír_15_fm(FEHÉR).jpg",
     price: 1500,
+    unit: "db",
   },
 
   // others
@@ -232,8 +279,11 @@ export const products: Product[] = [
     slug: "papirzacskok",
     category: "paper-bags",
     description: "Csomagoláshoz használható papírzacskók többféle méretben.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/others/Papírzacskó_100_l_(1).jpg",
     price: 1000,
+    unit: "db",
   },
   {
     id: "8",
@@ -241,7 +291,10 @@ export const products: Product[] = [
     slug: "zsirpapir",
     category: "greaseproof-paper",
     description: "Élelmiszer-csomagoláshoz ideális papírtermék.",
+    isFeatured: true,
+    isAvailable: true,
     imageUrl: "/images/others/Háztartási_zsírpapír_5_íves_LADY.jpg",
     price: 800,
+    unit: "db",
   },
 ];

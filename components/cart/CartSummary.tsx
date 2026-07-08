@@ -34,7 +34,7 @@ export default function CartSummary() {
       </div>
 
       <Button href="/checkout" fullWidth className="mt-6">
-        Ajánlatkérés folytatása
+        Rendelés folytatása
       </Button>
 
       <Button
