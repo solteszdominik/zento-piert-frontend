@@ -44,7 +44,7 @@ export const products: Product[] = [
 
   // tissues
   {
-    id: "25",
+    id: "11",
     name: "Papírzsebkendő Harmónia",
     slug: "papirzsebkendo-harmonia",
     category: "tissues",
@@ -56,7 +56,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "4",
+    id: "12",
     name: "Papírzsebkendő Lady",
     slug: "papirzsebkendo-lady",
     category: "tissues",
@@ -68,7 +68,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "20",
+    id: "13",
     name: "Papírzsebkendő Lady soft",
     slug: "papirzsebkendo-lady-soft",
     category: "tissues",
@@ -80,7 +80,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "9",
+    id: "14",
     name: "Papírzsebkendő PRIVÁT barack",
     slug: "papirzsebkendo-privat-barack",
     category: "tissues",
@@ -92,7 +92,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "10",
+    id: "15",
     name: "Papírzsebkendő PRIVÁT jázmin-orgona",
     slug: "papirzsebkendo-privat-jazmin-orgona",
     category: "tissues",
@@ -104,7 +104,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "11",
+    id: "16",
     name: "Papírzsebkendő PRIVÁT bubble gum",
     slug: "papirzsebkendo-privat-bubble-gum",
     category: "tissues",
@@ -116,7 +116,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "12",
+    id: "17",
     name: "Papírzsebkendő PRIVÁT aloe vera",
     slug: "papirzsebkendo-privat-aloe-vera",
     category: "tissues",
@@ -128,7 +128,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "13",
+    id: "18",
     name: "Papírzsebkendő Pézsé",
     slug: "papirzsebkendo-pezse",
     category: "tissues",
@@ -141,7 +141,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "14",
+    id: "19",
     name: "Papírzsebkendő PRIVÁT",
     slug: "papirzsebkendo-privat-10-lapos",
     category: "tissues",
@@ -156,7 +156,7 @@ export const products: Product[] = [
   // foils
 
   {
-    id: "6",
+    id: "30",
     name: "Alufólia, 20m",
     slug: "alufolia-20m",
     category: "aluminium-foil",
@@ -168,7 +168,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "30",
+    id: "31",
     name: "Alufólia, 30m",
     slug: "alufolia-30m",
     category: "aluminium-foil",
@@ -183,7 +183,7 @@ export const products: Product[] = [
   // cling-film
 
   {
-    id: "26",
+    id: "40",
     name: "Folpack, 20m",
     slug: "folpack-20m",
     category: "cling-film",
@@ -196,7 +196,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "27",
+    id: "41",
     name: "Folpack, 30m",
     slug: "folpack-30m",
     category: "cling-film",
@@ -209,7 +209,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "28",
+    id: "42",
     name: "Folpack, 50m",
     slug: "folpack-50m",
     category: "cling-film",
@@ -224,7 +224,7 @@ export const products: Product[] = [
   // baking-paper
 
   {
-    id: "5",
+    id: "60",
     name: "Sütőpapír 8m, szilikonos",
     slug: "sutopapir-8m-silicone",
     category: "baking-paper",
@@ -236,7 +236,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "55",
+    id: "61",
     name: "Sütőpapír 8m, szilikonos, barna",
     slug: "sutopapir-8m-silicone-brown",
     category: "baking-paper",
@@ -248,7 +248,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "56",
+    id: "62",
     name: "Sütőpapír 15m",
     slug: "sutopapir-15m",
     category: "baking-paper",
@@ -260,7 +260,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "57",
+    id: "63",
     name: "Sütőpapír 15m, fehér",
     slug: "sutopapir-15m-white",
     category: "baking-paper",
@@ -274,7 +274,7 @@ export const products: Product[] = [
 
   // others
   {
-    id: "7",
+    id: "80",
     name: "Papírzacskó",
     slug: "papirzacskok",
     category: "paper-bags",
@@ -286,7 +286,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "8",
+    id: "81",
     name: "Zsírpapír LADY, 5 íves",
     slug: "zsirpapir",
     category: "greaseproof-paper",
