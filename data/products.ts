@@ -3,7 +3,7 @@ import type { Product } from "@/types/product";
 export const products: Product[] = [
   // napkins
   {
-    id: "1",
+    id: "c8040a4a-b27a-44d6-8a31-15e0b4d358e7",
     name: "Éttermi szalvéta",
     slug: "ettermi-szalveta",
     category: "napkins",
@@ -16,7 +16,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "2",
+    id: "a3f5ec1e-99ed-4167-949f-0c355b29f128",
     name: "Harmónia szalvéta, 80 lapos",
     slug: "harmonia-szalveta",
     category: "napkins",
@@ -29,7 +29,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "3",
+    id: "251c576e-7505-4ac5-86a8-5b1895b1319c",
     name: "Harmónia szalvéta, kockás, 80 lapos",
     slug: "harmonia-szalveta-kockas",
     category: "napkins",
@@ -44,7 +44,7 @@ export const products: Product[] = [
 
   // tissues
   {
-    id: "11",
+    id: "4028a669-31bc-4434-b138-0c5a6161263d",
     name: "Papírzsebkendő Harmónia",
     slug: "papirzsebkendo-harmonia",
     category: "tissues",
@@ -56,7 +56,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "12",
+    id: "80a41388-70d2-4fcf-a4e7-0d2d1904ddbe",
     name: "Papírzsebkendő Lady",
     slug: "papirzsebkendo-lady",
     category: "tissues",
@@ -68,7 +68,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "13",
+    id: "be1d5445-b7d0-4a9f-a949-f5f2f617ea5d",
     name: "Papírzsebkendő Lady soft",
     slug: "papirzsebkendo-lady-soft",
     category: "tissues",
@@ -80,7 +80,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "14",
+    id: "83804747-f50b-4484-95ec-819c63e3a952",
     name: "Papírzsebkendő PRIVÁT barack",
     slug: "papirzsebkendo-privat-barack",
     category: "tissues",
@@ -92,7 +92,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "15",
+    id: "9950119b-2683-4784-9239-d8eaa70fc3bc",
     name: "Papírzsebkendő PRIVÁT jázmin-orgona",
     slug: "papirzsebkendo-privat-jazmin-orgona",
     category: "tissues",
@@ -104,7 +104,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "16",
+    id: "37e59971-52de-444e-8b6c-fe4592f3e02c",
     name: "Papírzsebkendő PRIVÁT bubble gum",
     slug: "papirzsebkendo-privat-bubble-gum",
     category: "tissues",
@@ -116,7 +116,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "17",
+    id: "005b2bd2-3098-4b9d-926b-cbf9d2cb6fe0",
     name: "Papírzsebkendő PRIVÁT aloe vera",
     slug: "papirzsebkendo-privat-aloe-vera",
     category: "tissues",
@@ -128,7 +128,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "18",
+    id: "7b276dbc-64d3-40b4-9975-39e31d9f1a1f",
     name: "Papírzsebkendő Pézsé",
     slug: "papirzsebkendo-pezse",
     category: "tissues",
@@ -141,7 +141,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "19",
+    id: "d3424cb1-9207-4279-b4a5-9e917b01c94d",
     name: "Papírzsebkendő PRIVÁT",
     slug: "papirzsebkendo-privat-10-lapos",
     category: "tissues",
@@ -156,7 +156,7 @@ export const products: Product[] = [
   // foils
 
   {
-    id: "30",
+    id: "cd401ffc-93b2-4402-b508-f830ac9c69a0",
     name: "Alufólia, 20m",
     slug: "alufolia-20m",
     category: "aluminium-foil",
@@ -168,7 +168,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "31",
+    id: "cdc98c52-bab5-4e3b-b4d7-5151cfa81e99",
     name: "Alufólia, 30m",
     slug: "alufolia-30m",
     category: "aluminium-foil",
@@ -183,7 +183,7 @@ export const products: Product[] = [
   // cling-film
 
   {
-    id: "40",
+    id: "590ae9b2-5cdd-4600-a9c8-769fbedfd7e0",
     name: "Folpack, 20m",
     slug: "folpack-20m",
     category: "cling-film",
@@ -196,7 +196,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "41",
+    id: "dd4f453a-a398-4e32-92c2-d770219c6b84",
     name: "Folpack, 30m",
     slug: "folpack-30m",
     category: "cling-film",
@@ -209,7 +209,7 @@ export const products: Product[] = [
   },
 
   {
-    id: "42",
+    id: "4d0f6f7b-c832-4dd4-a539-64f912de278d",
     name: "Folpack, 50m",
     slug: "folpack-50m",
     category: "cling-film",
@@ -224,7 +224,7 @@ export const products: Product[] = [
   // baking-paper
 
   {
-    id: "60",
+    id: "6299f51b-e197-4c03-b0c7-cb74c1de0daa",
     name: "Sütőpapír 8m, szilikonos",
     slug: "sutopapir-8m-silicone",
     category: "baking-paper",
@@ -236,7 +236,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "61",
+    id: "356d1653-e2cb-42d0-abf8-fd0ce908abf9",
     name: "Sütőpapír 8m, szilikonos, barna",
     slug: "sutopapir-8m-silicone-brown",
     category: "baking-paper",
@@ -248,7 +248,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "62",
+    id: "b73a9ff2-a8da-42c0-9530-8eae2763a63f",
     name: "Sütőpapír 15m",
     slug: "sutopapir-15m",
     category: "baking-paper",
@@ -274,7 +274,7 @@ export const products: Product[] = [
 
   // others
   {
-    id: "80",
+    id: "461efa7b-3a10-4678-ba5d-45086d8ecfe7",
     name: "Papírzacskó",
     slug: "papirzacskok",
     category: "paper-bags",
@@ -286,7 +286,7 @@ export const products: Product[] = [
     unit: "db",
   },
   {
-    id: "81",
+    id: "67cec3f2-34d0-4e14-a3ad-0c1c35581ae5",
     name: "Zsírpapír LADY, 5 íves",
     slug: "zsirpapir",
     category: "greaseproof-paper",

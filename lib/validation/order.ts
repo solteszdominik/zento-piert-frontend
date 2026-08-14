@@ -5,25 +5,31 @@ export type CheckoutFormErrors = Partial<Record<keyof OrderFormData, string>>;
 export function validateCheckoutForm(
   formData: OrderFormData,
 ): CheckoutFormErrors {
-  const Error: CheckoutFormErrors = {};
+  const errors: CheckoutFormErrors = {};
 
   if (!formData.customerName.trim()) {
-    Error.customerName = "A név megadása kötelező.";
+    errors.customerName = "A név megadása kötelező.";
   }
 
   if (!formData.customerEmail.trim()) {
-    Error.customerEmail = "Az e-mail cím megadása kötelező.";
+    errors.customerEmail = "Az e-mail cím megadása kötelező.";
   } else if (!isValidEmail(formData.customerEmail)) {
-    Error.customerEmail = "Érvénytelen e-mail cím.";
+    errors.customerEmail = "Érvénytelen e-mail cím.";
   }
 
   if (!formData.customerPhone.trim()) {
-    Error.customerPhone = "A telefonszám megadása kötelező.";
+    errors.customerPhone = "A telefonszám megadása kötelező.";
   } else if (!isValidPhone(formData.customerPhone)) {
-    Error.customerPhone = "Érvénytelen telefonszám.";
+    errors.customerPhone = "Érvénytelen telefonszám.";
   }
 
-  return Error;
+  if (!formData.customerAddress.trim()) {
+    errors.customerAddress = "A szállítási cím megadása kötelező.";
+  } else if (formData.customerAddress.trim().length < 5) {
+    errors.customerAddress = "Adj meg egy érvényes szállítási címet.";
+  }
+
+  return errors;
 }
 
 export function hasCheckoutErrors(errors: CheckoutFormErrors) {

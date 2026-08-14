@@ -14,6 +14,16 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
   const showToast = useToastStore((state) => state.showToast);
 
   const handleAddToCart = () => {
+    if (!product.isAvailable) {
+      showToast({
+        title: "Nem elérhető",
+        message: `${product.name} jelenleg nem rendelhető.`,
+        variant: "error",
+      });
+
+      return;
+    }
+
     addItem(product);
 
     showToast({
@@ -22,15 +32,17 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
       variant: "success",
     });
   };
+
   if (!product.isAvailable) {
     return (
-      <Button type="button" disabled fullWidth size="sm">
+      <Button type="button" disabled>
         Nem elérhető
       </Button>
     );
   }
+
   return (
-    <Button type="button" onClick={handleAddToCart} fullWidth size="sm">
+    <Button type="button" onClick={handleAddToCart}>
       Kosárba
     </Button>
   );

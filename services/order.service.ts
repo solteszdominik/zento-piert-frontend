@@ -1,27 +1,27 @@
-import type { CreateOrderPayload, OrderResponse } from "@/types/order";
+import type { CreateOrderInput, CreateOrderResponse } from "@/types/order";
 
-export async function createOrder(
-  payload: CreateOrderPayload,
-): Promise<OrderResponse> {
-  console.log("Create order payload:", payload);
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  return {
-    success: true,
-    message: "A rendelést sikeresen rögzítettük.",
-  };
+if (!API_URL) {
+  throw new Error("Missing NEXT_PUBLIC_API_URL");
 }
 
-// import { apiRequest } from "@/lib/api";
-// import type { CheckoutRequestPayload } from "@/types/checkout";
+export async function createOrder(
+  payload: CreateOrderInput,
+): Promise<CreateOrderResponse> {
+  const response = await fetch(`${API_URL}/orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
 
-// export interface CheckoutResponse {
-//   success: boolean;
-//   message: string;
-// }
+  const data = await response.json();
 
-// export function submitCheckoutRequest(payload: CheckoutRequestPayload) {
-//   return apiRequest<CheckoutResponse>("/checkout-requests", {
-//     method: "POST",
-//     body: JSON.stringify(payload),
-//   });
-// }
+  if (!response.ok) {
+    throw new Error(data.message ?? "Nem sikerült elküldeni a rendelést.");
+  }
+
+  return data.data as CreateOrderResponse;
+}

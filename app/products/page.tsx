@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import ProductFilters from "@/components/products/ProductFilter";
 import ProductGrid from "@/components/products/ProductGrid";
-import { products } from "@/data/products";
+import { productService } from "@/services/productService";
 
 interface ProductsPageProps {
   searchParams?: Promise<{
@@ -11,7 +11,10 @@ interface ProductsPageProps {
   }>;
 }
 
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({
+  searchParams,
+}: ProductsPageProps) {
+  const products = await productService.getProducts();
   const params = await searchParams;
   const selectedCategory = params?.category;
   const search = params?.search?.toLowerCase() ?? "";
@@ -55,7 +58,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
           <div className="mb-8">
             <p className="text-sm text-slate-500">
-              Találatok száma: {" "}
+              Találatok száma:{" "}
               <span className="font-semibold text-blue-950">
                 {filteredProducts.length}
               </span>
@@ -66,9 +69,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <ProductGrid products={filteredProducts} />
           ) : (
             <div className="rounded-3xl border border-blue-100 bg-blue-50 p-10 text-center">
-              <h2 className="text-xl font-bold text-blue-950">
-                Nincs találat
-              </h2>
+              <h2 className="text-xl font-bold text-blue-950">Nincs találat</h2>
               <p className="mt-2 text-slate-600">
                 Próbálj másik kategóriát vagy keresési kifejezést.
               </p>

@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
 import { categories } from "@/data/categories";
-import { products } from "@/data/products";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import { productService } from "@/services/productService";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -16,9 +15,12 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
 
-  if (!product) {
+  let product;
+
+  try {
+    product = await productService.getProductBySlug(slug);
+  } catch {
     notFound();
   }
 
@@ -26,8 +28,6 @@ export default async function ProductDetailPage({
 
   return (
     <>
-      <Header />
-
       <main>
         <section className="bg-gradient-to-br from-blue-50 via-white to-sky-100">
           <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center">
@@ -57,14 +57,17 @@ export default async function ProductDetailPage({
                 {product.description}
               </p>
 
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="/contact"
-                  className="rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
-                >
-                  Rendelés leadása
-                </Link>
+              <div className="mb-6">
+                <p className="text-2xl font-bold text-blue-950">
+                  {product.price.toLocaleString("hu-HU")} Ft
+                </p>
 
+                <p className="mt-1 text-sm text-slate-500">
+                  Egység: {product.unit}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
                 <AddToCartButton product={product} />
               </div>
             </div>
@@ -77,6 +80,7 @@ export default async function ProductDetailPage({
               <h2 className="mb-2 text-lg font-bold text-blue-950">
                 Felhasználás
               </h2>
+
               <p className="text-sm leading-6 text-slate-600">
                 Háztartási, kereskedelmi és vendéglátói felhasználásra is
                 alkalmas termék.
@@ -87,17 +91,19 @@ export default async function ProductDetailPage({
               <h2 className="mb-2 text-lg font-bold text-blue-950">
                 Kiszerelés
               </h2>
-              <p className="text-sm leading-6 text-slate-600">
-                A pontos kiszerelés és ár később termékadatként kerülhet
-                feltöltésre.
-              </p>
+
+              <p className="text-sm leading-6 text-slate-600">{product.unit}</p>
             </div>
 
             <div className="rounded-3xl border border-blue-100 bg-white p-6">
-              <h2 className="mb-2 text-lg font-bold text-blue-950">Rendelés</h2>
+              <h2 className="mb-2 text-lg font-bold text-blue-950">
+                Elérhetőség
+              </h2>
+
               <p className="text-sm leading-6 text-slate-600">
-                A rendelésleadás később kosárral, checkouttal és admin
-                rendelések kezeléssel bővíthető.
+                {product.isAvailable
+                  ? "A termék jelenleg rendelhető."
+                  : "A termék jelenleg nem rendelhető."}
               </p>
             </div>
           </div>

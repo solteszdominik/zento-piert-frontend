@@ -58,6 +58,17 @@ export default function CheckoutForm({
             />
           </Field>
 
+          <Field label="Szállítási cím" required error={errors.customerAddress}>
+            <Input
+              required
+              hasError={Boolean(errors.customerAddress)}
+              value={formData.customerAddress}
+              onChange={(event) =>
+                onChange("customerAddress", event.target.value)
+              }
+            />
+          </Field>
+
           <Field label="Cégnév">
             <Input
               value={formData.companyName}

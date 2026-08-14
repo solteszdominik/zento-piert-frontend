@@ -1,9 +1,9 @@
 "use client";
 
+import { useState } from "react";
+import type { FormEvent } from "react";
+
 import { createOrder } from "@/services/order.service";
-import type { CreateOrderPayload, OrderFormData } from "@/types/order";
-import { FormEvent, useState } from "react";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useCartStore } from "@/features/cart/cart.store";
 import { useToastStore } from "@/features/toast/toast.store";
@@ -18,11 +18,13 @@ import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import CheckoutForm from "@/components/order/OrderForm";
 import OrderSummary from "@/components/order/OrderSummary";
+import type { CreateOrderInput, OrderFormData } from "@/types/order";
 
 const initialFormData: OrderFormData = {
   customerName: "",
   customerEmail: "",
   customerPhone: "",
+  customerAddress: "",
   companyName: "",
   message: "",
 };
@@ -32,7 +34,8 @@ export default function CheckoutPage() {
   const clearCart = useCartStore((state) => state.clearCart);
   const showToast = useToastStore((state) => state.showToast);
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState<OrderFormData>(initialFormData);
+  const [errors, setErrors] = useState<CheckoutFormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
@@ -41,7 +44,6 @@ export default function CheckoutPage() {
   );
 
   const totalPrice = getCartTotalPrice(items);
-  const [errors, setErrors] = useState<CheckoutFormErrors>({});
 
   const handleChange = (field: keyof OrderFormData, value: string) => {
     setFormData((current) => ({
@@ -57,6 +59,7 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const validationErrors = validateCheckoutForm(formData);
 
     if (hasCheckoutErrors(validationErrors)) {
@@ -74,13 +77,21 @@ export default function CheckoutPage() {
     if (items.length === 0) {
       setFeedbackType("error");
       setFeedbackMessage("A kosár üres, így nem küldhető el rendelés.");
+
       return;
     }
 
-    const payload: CreateOrderPayload = {
-      ...formData,
-      items,
-      totalPrice,
+    const payload: CreateOrderInput = {
+      customer_name: formData.customerName.trim(),
+      customer_email: formData.customerEmail.trim(),
+      customer_phone: formData.customerPhone.trim(),
+      customer_address: formData.customerAddress.trim(),
+      company_name: formData.companyName.trim() || undefined,
+      message: formData.message.trim() || undefined,
+      items: items.map((item) => ({
+        product_id: item.product.id,
+        quantity: item.quantity,
+      })),
     };
 
     try {
@@ -90,16 +101,17 @@ export default function CheckoutPage() {
 
       const response = await createOrder(payload);
 
-      if (!response.success) {
-        throw new Error(response.message);
-      }
+      const successMessage =
+        `A rendelést sikeresen rögzítettük. ` +
+        `Rendelésszám: ${response.order.order_number}`;
 
       setIsSubmitted(true);
       setFeedbackType("success");
-      setFeedbackMessage(response.message);
+      setFeedbackMessage(successMessage);
+
       showToast({
         title: "Sikeres rendelés",
-        message: response.message,
+        message: successMessage,
         variant: "success",
       });
 
@@ -127,8 +139,6 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Header />
-
       <main className="mx-auto max-w-7xl px-6 py-16">
         <PageHeader
           badge="Rendelés"
@@ -148,7 +158,11 @@ export default function CheckoutPage() {
           </div>
         )}
 
-        {items.length === 0 && !isSubmitted ? (
+        {isSubmitted ? (
+          <div className="mt-8">
+            <Button href="/products">Tovább a termékekhez</Button>
+          </div>
+        ) : items.length === 0 ? (
           <EmptyState
             title="A kosarad üres"
             description="Rendelés leadása előtt adj hozzá termékeket a kosárhoz."
