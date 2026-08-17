@@ -24,9 +24,13 @@ const initialFormData: OrderFormData = {
   customerName: "",
   customerEmail: "",
   customerPhone: "",
-  customerAddress: "",
+  postalCode: "",
+  city: "",
+  streetAddress: "",
   companyName: "",
   message: "",
+  shippingMethod: "standard",
+  termsAccepted: false,
 };
 
 export default function CheckoutPage() {
@@ -45,7 +49,10 @@ export default function CheckoutPage() {
 
   const totalPrice = getCartTotalPrice(items);
 
-  const handleChange = (field: keyof OrderFormData, value: string) => {
+  const handleChange = (
+    field: keyof OrderFormData,
+    value: string | boolean,
+  ) => {
     setFormData((current) => ({
       ...current,
       [field]: value,
@@ -85,9 +92,18 @@ export default function CheckoutPage() {
       customer_name: formData.customerName.trim(),
       customer_email: formData.customerEmail.trim(),
       customer_phone: formData.customerPhone.trim(),
-      customer_address: formData.customerAddress.trim(),
+
+      postal_code: formData.postalCode.trim(),
+      city: formData.city.trim(),
+      street_address: formData.streetAddress.trim(),
+
       company_name: formData.companyName.trim() || undefined,
+
       message: formData.message.trim() || undefined,
+
+      shipping_method: formData.shippingMethod,
+      terms_accepted: formData.termsAccepted,
+
       items: items.map((item) => ({
         product_id: item.product.id,
         quantity: item.quantity,

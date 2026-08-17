@@ -23,10 +23,26 @@ export function validateCheckoutForm(
     errors.customerPhone = "Érvénytelen telefonszám.";
   }
 
-  if (!formData.customerAddress.trim()) {
-    errors.customerAddress = "A szállítási cím megadása kötelező.";
-  } else if (formData.customerAddress.trim().length < 5) {
-    errors.customerAddress = "Adj meg egy érvényes szállítási címet.";
+  if (!formData.postalCode.trim()) {
+    errors.postalCode = "Az irányítószám megadása kötelező.";
+  } else if (!/^\d{4}$/.test(formData.postalCode.trim())) {
+    errors.postalCode = "Az irányítószámnak 4 számjegyből kell állnia.";
+  }
+
+  if (!formData.city.trim()) {
+    errors.city = "A város megadása kötelező.";
+  }
+
+  if (!formData.streetAddress.trim()) {
+    errors.streetAddress = "Az utca és házszám megadása kötelező.";
+  }
+
+  if (!formData.shippingMethod) {
+    errors.shippingMethod = "Válassz szállítási módot.";
+  }
+
+  if (!formData.termsAccepted) {
+    errors.termsAccepted = "A rendeléshez el kell fogadnod a feltételeket.";
   }
 
   return errors;
