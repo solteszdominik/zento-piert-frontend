@@ -42,6 +42,17 @@ export default function AdminPage() {
             Rendelések megtekintése és kezelése.
           </p>
         </button>
+        <button
+          type="button"
+          onClick={() => router.push("/admin/products")}
+          className="rounded-xl border p-6 text-left transition hover:bg-gray-50"
+        >
+          <h2 className="text-xl font-semibold">Termékek</h2>
+
+          <p className="mt-2 text-sm text-gray-500">
+            Termékek, árak és elérhetőség kezelése.
+          </p>
+        </button>
       </div>
     </main>
   );

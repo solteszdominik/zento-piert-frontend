@@ -19,3 +19,7 @@ export interface Product {
   isAvailable?: boolean;
   unit: "db" | "csomag" | "lap";
 }
+
+export interface AdminProduct extends Product {
+  categoryId: string;
+}

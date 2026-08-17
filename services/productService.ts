@@ -1,4 +1,5 @@
-import type { Product, ProductCategory } from "@/types/product";
+import { supabase } from "@/lib/supabase/supabase";
+import type { AdminProduct, Product, ProductCategory } from "@/types/product";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -27,6 +28,30 @@ interface ApiProduct {
   categories: ApiCategory;
 }
 
+export interface UpdateProductInput {
+  name?: string;
+  slug?: string;
+  description?: string | null;
+  price?: number;
+  unit?: Product["unit"];
+  image_url?: string | null;
+  is_available?: boolean;
+  is_featured?: boolean;
+  category_id?: string;
+}
+
+export interface CreateProductInput {
+  name: string;
+  slug: string;
+  description?: string | null;
+  price: number;
+  unit: Product["unit"];
+  image_url?: string | null;
+  is_available: boolean;
+  is_featured: boolean;
+  category_id: string;
+}
+
 function mapApiProduct(product: ApiProduct): Product {
   return {
     id: product.id,
@@ -40,6 +65,25 @@ function mapApiProduct(product: ApiProduct): Product {
     isAvailable: product.is_available,
     unit: product.unit,
   };
+}
+
+function mapApiAdminProduct(product: ApiProduct): AdminProduct {
+  return {
+    ...mapApiProduct(product),
+    categoryId: product.category_id,
+  };
+}
+
+async function getAdminToken() {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  return session.access_token;
 }
 
 export const productService = {
@@ -69,5 +113,73 @@ export const productService = {
     const data = (await response.json()) as ApiProduct;
 
     return mapApiProduct(data);
+  },
+
+  async getAdminProductById(id: string): Promise<AdminProduct> {
+    const token = await getAdminToken();
+
+    const response = await fetch(`${API_URL}/products/id/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch product");
+    }
+
+    const data = (await response.json()) as ApiProduct;
+
+    return mapApiAdminProduct(data);
+  },
+
+  async updateProduct(
+    id: string,
+    input: UpdateProductInput,
+  ): Promise<AdminProduct> {
+    const token = await getAdminToken();
+
+    const response = await fetch(`${API_URL}/products/id/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(input),
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+
+      throw new Error(data?.message ?? "Failed to update product");
+    }
+
+    const result = await response.json();
+
+    return mapApiAdminProduct(result.data as ApiProduct);
+  },
+
+  async createProduct(input: CreateProductInput): Promise<AdminProduct> {
+    const token = await getAdminToken();
+
+    const response = await fetch(`${API_URL}/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(input),
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+
+      throw new Error(data?.message ?? "Failed to create product");
+    }
+
+    const result = await response.json();
+
+    return mapApiAdminProduct(result.data as ApiProduct);
   },
 };
