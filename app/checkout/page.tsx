@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { FormEventHandler } from "react";
 
 import { createOrder } from "@/services/order.service";
 import Footer from "@/components/layout/Footer";
@@ -47,7 +47,7 @@ export default function CheckoutPage() {
     null,
   );
 
-  const totalPrice = getCartTotalPrice(items);
+  const productsTotal = getCartTotalPrice(items);
 
   const handleChange = (
     field: keyof OrderFormData,
@@ -64,7 +64,7 @@ export default function CheckoutPage() {
     }));
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
     const validationErrors = validateCheckoutForm(formData);
@@ -84,7 +84,6 @@ export default function CheckoutPage() {
     if (items.length === 0) {
       setFeedbackType("error");
       setFeedbackMessage("A kosár üres, így nem küldhető el rendelés.");
-
       return;
     }
 
@@ -98,7 +97,6 @@ export default function CheckoutPage() {
       street_address: formData.streetAddress.trim(),
 
       company_name: formData.companyName.trim() || undefined,
-
       message: formData.message.trim() || undefined,
 
       shipping_method: formData.shippingMethod,
@@ -162,6 +160,12 @@ export default function CheckoutPage() {
           description="Add meg az elérhetőségeidet, és ellenőrizd a kosár tartalmát."
         />
 
+        {!isSubmitted && items.length > 0 && (
+          <div className="mt-6">
+            <Button href="/cart">← Kosár szerkesztése</Button>
+          </div>
+        )}
+
         {feedbackMessage && (
           <div
             className={`mt-8 rounded-2xl border p-5 font-semibold ${
@@ -194,7 +198,11 @@ export default function CheckoutPage() {
               onSubmit={handleSubmit}
             />
 
-            <OrderSummary items={items} totalPrice={totalPrice} />
+            <OrderSummary
+              items={items}
+              productsTotal={productsTotal}
+              shippingMethod={formData.shippingMethod}
+            />
           </div>
         )}
       </main>

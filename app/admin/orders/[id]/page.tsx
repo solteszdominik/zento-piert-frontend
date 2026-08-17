@@ -2,9 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+
 import { supabase } from "@/lib/supabase/supabase";
 import { orderService } from "@/services/orderService";
+import { shippingMethods } from "@/config/shipping";
+
 import type { Order, OrderStatus } from "@/types/order";
+
+const statusLabels: Record<OrderStatus, string> = {
+  new: "Új",
+  processing: "Feldolgozás alatt",
+  completed: "Teljesítve",
+  cancelled: "Törölve",
+};
 
 export default function AdminOrderDetailsPage() {
   const params = useParams<{ id: string }>();
@@ -86,11 +96,13 @@ export default function AdminOrderDetailsPage() {
     );
   }
 
+  const shippingMethod = shippingMethods[order.shipping_method];
+
   return (
     <main className="mx-auto max-w-5xl p-8">
       <button
         type="button"
-        onClick={() => router.push("/admin")}
+        onClick={() => router.push("/admin/orders")}
         className="mb-6 text-sm underline"
       >
         ← Vissza a rendelésekhez
@@ -124,8 +136,15 @@ export default function AdminOrderDetailsPage() {
             </p>
 
             <p>
-              <strong>Cím:</strong> {order.customer_address}
+              <strong>Cím:</strong> {order.postal_code} {order.city},{" "}
+              {order.street_address}
             </p>
+
+            {order.company_name && (
+              <p>
+                <strong>Cégnév:</strong> {order.company_name}
+              </p>
+            )}
           </div>
         </section>
 
@@ -168,7 +187,29 @@ export default function AdminOrderDetailsPage() {
             </div>
 
             <p>
-              <strong>Aktuális státusz:</strong> {order.status}
+              <strong>Aktuális státusz:</strong> {statusLabels[order.status]}
+            </p>
+
+            <p>
+              <strong>Szállítási mód:</strong>{" "}
+              {shippingMethod?.label ?? order.shipping_method}
+            </p>
+
+            <p>
+              <strong>Szállítási díj:</strong>{" "}
+              {order.shipping_price === 0
+                ? "Díjmentes"
+                : `${order.shipping_price.toLocaleString("hu-HU")} Ft`}
+            </p>
+
+            <p>
+              <strong>Rendelés összege:</strong>{" "}
+              {order.total_price.toLocaleString("hu-HU")} Ft
+            </p>
+
+            <p>
+              <strong>Feltételek elfogadva:</strong>{" "}
+              {order.terms_accepted ? "Igen" : "Nem"}
             </p>
 
             <p>
@@ -190,11 +231,26 @@ export default function AdminOrderDetailsPage() {
             {order.order_items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between py-3"
+                className="flex items-center justify-between gap-4 py-3"
               >
-                <span>{item.product_name}</span>
+                <div>
+                  <p className="font-medium">{item.product_name}</p>
 
-                <span className="font-medium">{item.quantity} db</span>
+                  <p className="text-sm text-gray-500">
+                    {item.unit_price.toLocaleString("hu-HU")} Ft / {item.unit}
+                  </p>
+                </div>
+
+                <div className="text-right">
+                  <p className="font-medium">
+                    {item.quantity} {item.unit}
+                  </p>
+
+                  <p className="text-sm text-gray-500">
+                    {(item.unit_price * item.quantity).toLocaleString("hu-HU")}{" "}
+                    Ft
+                  </p>
+                </div>
               </div>
             ))}
           </div>

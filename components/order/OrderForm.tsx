@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { FormEvent } from "react";
+import type { FormEventHandler } from "react";
 
 import type { OrderFormData } from "@/types/order";
 import type { CheckoutFormErrors } from "@/lib/validation/order";
@@ -9,13 +9,14 @@ import Card from "@/components/ui/Card";
 import Field from "@/components/ui/Field";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import { shippingMethods } from "@/config/shipping";
 
 interface CheckoutFormProps {
   formData: OrderFormData;
   errors: CheckoutFormErrors;
   isSubmitting: boolean;
   onChange: (field: keyof OrderFormData, value: string | boolean) => void;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
 export default function CheckoutForm({
@@ -109,7 +110,11 @@ export default function CheckoutForm({
               }
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500"
             >
-              <option value="standard">Standard szállítás</option>
+              {Object.entries(shippingMethods).map(([value, method]) => (
+                <option key={value} value={value}>
+                  {method.label}
+                </option>
+              ))}
             </select>
           </Field>
 

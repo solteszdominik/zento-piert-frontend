@@ -1,3 +1,5 @@
+import type { ShippingMethod } from "@/config/shipping";
+
 export interface OrderFormData {
   customerName: string;
   customerEmail: string;
@@ -14,8 +16,6 @@ export interface OrderFormData {
   termsAccepted: boolean;
 }
 
-export type ShippingMethod = "standard";
-
 export type OrderStatus = "new" | "processing" | "completed" | "cancelled";
 
 export interface OrderItem {
@@ -23,6 +23,7 @@ export interface OrderItem {
   product_id: string;
   product_name: string;
   unit_price: number;
+  unit: "db" | "csomag" | "lap";
   quantity: number;
 }
 
