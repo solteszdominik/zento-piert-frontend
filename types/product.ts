@@ -5,7 +5,11 @@ export type ProductCategory =
   | "aluminium-foil"
   | "paper-bags"
   | "greaseproof-paper"
-  | "cling-film";
+  | "cling-film"
+  | "laundry-care"
+  | "dishwashing"
+  | "surface-cleaners"
+  | "toilet-cleaners";
 
 export interface Product {
   id: string;
