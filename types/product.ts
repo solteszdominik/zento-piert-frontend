@@ -22,6 +22,9 @@ export interface Product {
   isFeatured?: boolean;
   isAvailable?: boolean;
   unit: "db" | "csomag" | "lap";
+  packageSize?: string;
+  brand?: string;
+  productLine?: string;
 }
 
 export interface AdminProduct extends Product {

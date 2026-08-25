@@ -21,6 +21,9 @@ interface ProductFormData {
   categoryId: string;
   isAvailable: boolean;
   isFeatured: boolean;
+  brand: string;
+  productLine: string;
+  packageSize: string;
 }
 
 const initialFormData: ProductFormData = {
@@ -33,6 +36,9 @@ const initialFormData: ProductFormData = {
   categoryId: "",
   isAvailable: true,
   isFeatured: false,
+  brand: "",
+  productLine: "",
+  packageSize: "",
 };
 
 export default function NewProductPage() {
@@ -59,7 +65,6 @@ export default function NewProductPage() {
 
       try {
         const data = await categoryService.getCategories();
-
         setCategories(data);
       } catch {
         setError("Nem sikerült betölteni a kategóriákat.");
@@ -115,6 +120,9 @@ export default function NewProductPage() {
       category_id: formData.categoryId,
       is_available: formData.isAvailable,
       is_featured: formData.isFeatured,
+      brand: formData.brand.trim() || null,
+      product_line: formData.productLine.trim() || null,
+      package_size: formData.packageSize.trim() || null,
     };
 
     try {
@@ -163,6 +171,7 @@ export default function NewProductPage() {
       )}
 
       <div className="space-y-6 rounded-xl border p-6">
+        {/* TERMÉKNÉV */}
         <div>
           <label htmlFor="name" className="mb-2 block text-sm font-semibold">
             Terméknév
@@ -177,6 +186,7 @@ export default function NewProductPage() {
           />
         </div>
 
+        {/* SLUG */}
         <div>
           <label htmlFor="slug" className="mb-2 block text-sm font-semibold">
             Slug
@@ -201,6 +211,7 @@ export default function NewProductPage() {
           </p>
         </div>
 
+        {/* LEÍRÁS */}
         <div>
           <label
             htmlFor="description"
@@ -223,6 +234,7 @@ export default function NewProductPage() {
           />
         </div>
 
+        {/* KÉP */}
         <div>
           <label
             htmlFor="imageUrl"
@@ -246,6 +258,7 @@ export default function NewProductPage() {
           />
         </div>
 
+        {/* KATEGÓRIA */}
         <div>
           <label
             htmlFor="category"
@@ -275,6 +288,76 @@ export default function NewProductPage() {
           </select>
         </div>
 
+        {/* MÁRKA + TERMÉKCSALÁD */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <label htmlFor="brand" className="mb-2 block text-sm font-semibold">
+              Márka
+            </label>
+
+            <input
+              id="brand"
+              type="text"
+              value={formData.brand}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  brand: event.target.value,
+                }))
+              }
+              placeholder="pl. Sano"
+              className="w-full rounded-md border px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="productLine"
+              className="mb-2 block text-sm font-semibold"
+            >
+              Termékcsalád
+            </label>
+
+            <input
+              id="productLine"
+              type="text"
+              value={formData.productLine}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  productLine: event.target.value,
+                }))
+              }
+              placeholder="pl. Spark"
+              className="w-full rounded-md border px-3 py-2"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="packageSize"
+            className="mb-2 block text-sm font-semibold"
+          >
+            Kiszerelés
+          </label>
+
+          <input
+            id="packageSize"
+            type="text"
+            value={formData.packageSize}
+            onChange={(event) =>
+              setFormData((current) => ({
+                ...current,
+                packageSize: event.target.value,
+              }))
+            }
+            placeholder="pl. 1 L vagy 750 ml"
+            className="w-full rounded-md border px-3 py-2"
+          />
+        </div>
+
+        {/* ÁR + EGYSÉG */}
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label htmlFor="price" className="mb-2 block text-sm font-semibold">
@@ -320,6 +403,7 @@ export default function NewProductPage() {
           </div>
         </div>
 
+        {/* BEÁLLÍTÁSOK */}
         <div className="space-y-4 border-t pt-6">
           <label className="flex cursor-pointer items-center gap-3">
             <input
@@ -352,6 +436,7 @@ export default function NewProductPage() {
           </label>
         </div>
 
+        {/* MENTÉS */}
         <div className="flex justify-end border-t pt-6">
           <button
             type="button"

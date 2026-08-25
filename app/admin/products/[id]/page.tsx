@@ -58,6 +58,8 @@ export default function AdminProductDetailsPage() {
           category_id: productData.categoryId,
           is_available: productData.isAvailable ?? true,
           is_featured: productData.isFeatured ?? false,
+          brand: productData.brand ?? null,
+          product_line: productData.productLine ?? null,
         });
       } catch {
         setError("Nem sikerült betölteni a terméket.");
@@ -118,6 +120,9 @@ export default function AdminProductDetailsPage() {
         category_id: formData.category_id,
         is_available: formData.is_available,
         is_featured: formData.is_featured,
+        brand: formData.brand?.trim() || null,
+        product_line: formData.product_line?.trim() || null,
+        package_size: formData.package_size?.trim() || null,
       });
 
       setProduct(updatedProduct);
@@ -132,6 +137,9 @@ export default function AdminProductDetailsPage() {
         category_id: updatedProduct.categoryId,
         is_available: updatedProduct.isAvailable ?? true,
         is_featured: updatedProduct.isFeatured ?? false,
+        brand: updatedProduct.brand ?? null,
+        product_line: updatedProduct.productLine ?? null,
+        package_size: updatedProduct.packageSize ?? null,
       });
 
       setSuccessMessage("A termék módosításai sikeresen mentve.");
@@ -307,6 +315,74 @@ export default function AdminProductDetailsPage() {
               </option>
             ))}
           </select>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <label htmlFor="brand" className="mb-2 block text-sm font-semibold">
+              Márka
+            </label>
+
+            <input
+              id="brand"
+              type="text"
+              value={formData.brand ?? ""}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  brand: event.target.value,
+                }))
+              }
+              placeholder="pl. Sano"
+              className="w-full rounded-md border px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="productLine"
+              className="mb-2 block text-sm font-semibold"
+            >
+              Termékcsalád
+            </label>
+
+            <input
+              id="productLine"
+              type="text"
+              value={formData.product_line ?? ""}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  product_line: event.target.value,
+                }))
+              }
+              placeholder="pl. Spark"
+              className="w-full rounded-md border px-3 py-2"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="packageSize"
+            className="mb-2 block text-sm font-semibold"
+          >
+            Kiszerelés
+          </label>
+
+          <input
+            id="packageSize"
+            type="text"
+            value={formData.package_size ?? ""}
+            onChange={(event) =>
+              setFormData((current) => ({
+                ...current,
+                package_size: event.target.value,
+              }))
+            }
+            placeholder="pl. 1 L vagy 750 ml"
+            className="w-full rounded-md border px-3 py-2"
+          />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">

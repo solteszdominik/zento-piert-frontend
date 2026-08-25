@@ -26,6 +26,9 @@ interface ApiProduct {
   unit: Product["unit"];
   is_featured: boolean;
   categories: ApiCategory;
+  brand: string | null;
+  product_line: string | null;
+  package_size: string | null;
 }
 
 export interface UpdateProductInput {
@@ -38,6 +41,9 @@ export interface UpdateProductInput {
   is_available?: boolean;
   is_featured?: boolean;
   category_id?: string;
+  brand?: string | null;
+  product_line?: string | null;
+  package_size?: string | null;
 }
 
 export interface CreateProductInput {
@@ -50,6 +56,9 @@ export interface CreateProductInput {
   is_available: boolean;
   is_featured: boolean;
   category_id: string;
+  brand?: string | null;
+  product_line?: string | null;
+  package_size?: string | null;
 }
 
 function mapApiProduct(product: ApiProduct): Product {
@@ -64,6 +73,9 @@ function mapApiProduct(product: ApiProduct): Product {
     isFeatured: product.is_featured,
     isAvailable: product.is_available,
     unit: product.unit,
+    brand: product.brand ?? undefined,
+    productLine: product.product_line ?? undefined,
+    packageSize: product.package_size ?? undefined,
   };
 }
 
