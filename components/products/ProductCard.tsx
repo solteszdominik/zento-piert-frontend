@@ -31,7 +31,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
 
-        <p className="mt-4 text-lg font-bold text-blue-900">
+        {product.packageSize && (
+          <p className="mt-3 text-sm font-semibold text-slate-500">
+            Kiszerelés: {product.packageSize}
+          </p>
+        )}
+
+        <p className="mt-2 text-lg font-bold text-blue-900">
           {formatPrice(product.price)} / {product.unit}
         </p>
 

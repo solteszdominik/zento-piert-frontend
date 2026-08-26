@@ -60,6 +60,7 @@ export default function AdminProductDetailsPage() {
           is_featured: productData.isFeatured ?? false,
           brand: productData.brand ?? null,
           product_line: productData.productLine ?? null,
+          package_size: productData.packageSize ?? null,
         });
       } catch {
         setError("Nem sikerült betölteni a terméket.");
