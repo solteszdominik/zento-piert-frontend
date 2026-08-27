@@ -1,15 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
+import ProductImagePicker from "@/components/admin/ProductImagePicker";
 import { supabase } from "@/lib/supabase/supabase";
 import {
   productService,
   type UpdateProductInput,
 } from "@/services/productService";
-import { productImageService } from "@/services/productImageService";
 import { categoryService, type Category } from "@/services/categoryService";
 import type { AdminProduct, Product } from "@/types/product";
 
@@ -24,7 +23,6 @@ export default function AdminProductDetailsPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -75,42 +73,6 @@ export default function AdminProductDetailsPage() {
     loadProduct();
   }, [params.id, router]);
 
-  const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    try {
-      setError(null);
-      setSuccessMessage(null);
-      setIsUploadingImage(true);
-
-      const imageUrl = await productImageService.uploadImage(file);
-
-      setFormData((current) => ({
-        ...current,
-        image_url: imageUrl,
-      }));
-
-      setSuccessMessage(
-        "Az új kép feltöltve. A véglegesítéshez mentsd a módosításokat.",
-      );
-    } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Nem sikerült feltölteni a képet.",
-      );
-    } finally {
-      setIsUploadingImage(false);
-      event.target.value = "";
-    }
-  };
-
   const handleSave = async () => {
     if (!product) {
       return;
@@ -146,7 +108,7 @@ export default function AdminProductDetailsPage() {
     }
 
     if (!formData.image_url) {
-      setError("A termékhez kép megadása kötelező.");
+      setError("Válassz vagy tölts fel képet a termékhez.");
       return;
     }
 
@@ -309,46 +271,22 @@ export default function AdminProductDetailsPage() {
         </div>
 
         <div>
-          <label
-            htmlFor="productImage"
-            className="mb-2 block text-sm font-semibold"
-          >
-            Termékkép
-          </label>
+          <p className="mb-3 block text-sm font-semibold">Termékkép</p>
 
-          {formData.image_url && (
-            <div className="mb-4">
-              <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-xl border bg-gray-50">
-                <Image
-                  src={formData.image_url}
-                  alt={formData.name ?? "Termékkép"}
-                  fill
-                  className="object-contain p-4"
-                  sizes="384px"
-                />
-              </div>
-            </div>
-          )}
-
-          <input
-            id="productImage"
-            type="file"
-            accept="image/png,image/jpeg,image/webp"
-            onChange={handleImageUpload}
-            disabled={isUploadingImage}
-            className="block w-full rounded-md border px-3 py-2 text-sm"
+          <ProductImagePicker
+            value={formData.image_url ?? ""}
+            onChange={(imageUrl) =>
+              setFormData((current) => ({
+                ...current,
+                image_url: imageUrl,
+              }))
+            }
           />
 
-          <p className="mt-2 text-xs text-gray-500">
-            JPG, PNG vagy WEBP. Maximum 5 MB. Új kép kiválasztásával
-            lecserélheted a jelenlegi termékképet.
+          <p className="mt-3 text-xs text-gray-500">
+            A kép kiválasztása után a változtatást a lap alján található mentés
+            gombbal véglegesítsd.
           </p>
-
-          {isUploadingImage && (
-            <p className="mt-3 text-sm font-medium text-blue-700">
-              Kép feltöltése...
-            </p>
-          )}
         </div>
 
         <div>
@@ -534,7 +472,7 @@ export default function AdminProductDetailsPage() {
           <button
             type="button"
             onClick={handleSave}
-            disabled={isSaving || isUploadingImage}
+            disabled={isSaving}
             className="rounded-md bg-black px-5 py-2.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSaving ? "Mentés..." : "Módosítások mentése"}

@@ -1,8 +1,9 @@
-import AboutPreview from "@/components/home/AboutPreview";
-import CategoryPreview from "@/components/home/CategoryPreview";
-import ContactCta from "@/components/home/ContactCta";
+// import CategoryPreview from "@/components/home/CategoryPreview";
 // import FeaturedProducts from "@/components/home/FeaturedProducts";
+import AboutPreview from "@/components/home/AboutPreview";
+import ContactCta from "@/components/home/ContactCta";
 import Hero from "@/components/home/Hero";
+import SanoShowcase from "@/components/home/SanoShowcase";
 import TendersSection from "@/components/home/TendersSection";
 import VideoPreview from "@/components/home/VideoPreview";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
@@ -17,7 +18,8 @@ export default function Home() {
         <Hero />
         <AboutPreview />
         <WhyChooseUs />
-        <CategoryPreview />
+        <SanoShowcase />
+        {/* <CategoryPreview /> */}
         {/* <FeaturedProducts /> */}
         <VideoPreview />
         <ContactCta />
