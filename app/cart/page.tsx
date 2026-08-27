@@ -17,7 +17,7 @@ export default function CartPage() {
     <>
       <Header />
 
-      <main className="mx-auto min-h-[60vh] max-w-7xl px-6 py-16">
+      <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <PageHeader
           badge="Kosár"
           title="Kosár"
@@ -31,7 +31,7 @@ export default function CartPage() {
             action={<Button href="/products">Termékek megtekintése</Button>}
           />
         ) : (
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_360px]">
+          <div className="mt-8 grid gap-6 sm:mt-10 lg:mt-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-8">
             <CartList items={items} />
 
             <CartSummary />

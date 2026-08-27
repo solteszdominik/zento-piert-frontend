@@ -19,14 +19,14 @@ export default function OrderSummary({
   const grandTotal = productsTotal + shippingPrice;
 
   return (
-    <aside className="h-fit rounded-3xl border border-blue-100 bg-blue-50 p-6">
+    <aside className="h-fit rounded-2xl border border-blue-100 bg-blue-50 p-5 sm:rounded-3xl sm:p-6 lg:sticky lg:top-24 lg:self-start">
       <h2 className="text-xl font-bold text-blue-950">Kosár tartalma</h2>
 
       <div className="mt-5 space-y-4">
         {items.map((item) => (
           <div
             key={item.product.id}
-            className="flex justify-between gap-4 border-b border-blue-100 pb-3 text-sm"
+            className="flex flex-col gap-1 border-b border-blue-100 pb-3 text-sm sm:flex-row sm:justify-between sm:gap-4"
           >
             <div>
               <p className="font-semibold text-blue-950">{item.product.name}</p>
@@ -37,7 +37,7 @@ export default function OrderSummary({
               </p>
             </div>
 
-            <strong className="text-blue-950">
+            <strong className="shrink-0 text-blue-950">
               {formatPrice(getCartItemTotal(item))}
             </strong>
           </div>

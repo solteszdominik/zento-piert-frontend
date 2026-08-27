@@ -13,7 +13,7 @@ export default function CartSummary() {
   const totalPrice = getCartTotalPrice(items);
 
   return (
-    <aside className="rounded-3xl border border-blue-100 bg-blue-50 p-6">
+    <aside className="rounded-2xl border border-blue-100 bg-blue-50 p-5 sm:rounded-3xl sm:p-6 lg:sticky lg:top-24 lg:self-start">
       <h2 className="text-xl font-bold text-blue-950">Kosár összesítő</h2>
 
       <div className="mt-6 space-y-3 text-sm text-slate-700">

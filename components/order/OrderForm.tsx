@@ -29,7 +29,7 @@ export default function CheckoutForm({
   return (
     <Card>
       <form onSubmit={onSubmit}>
-        <div className="space-y-5">
+        <div className="space-y-4 sm:space-y-5">
           <Field label="Név" required error={errors.customerName}>
             <Input
               required
@@ -62,7 +62,7 @@ export default function CheckoutForm({
             />
           </Field>
 
-          <div className="grid gap-5 sm:grid-cols-[140px_1fr]">
+          <div className="grid gap-4 sm:grid-cols-[140px_1fr] sm:gap-5">
             <Field label="Irányítószám" required error={errors.postalCode}>
               <Input
                 required
@@ -134,7 +134,7 @@ export default function CheckoutForm({
                 onChange={(event) =>
                   onChange("termsAccepted", event.target.checked)
                 }
-                className="mt-1 h-4 w-4"
+                className="mt-1 h-5 w-5 shrink-0 sm:h-4 sm:w-4"
               />
 
               <span className="text-sm leading-6 text-slate-600">

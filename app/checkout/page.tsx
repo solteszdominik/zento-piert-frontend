@@ -153,7 +153,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <main className="mx-auto max-w-7xl px-6 py-16">
+      <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <PageHeader
           badge="Rendelés"
           title="Rendelés leadása"
@@ -161,14 +161,14 @@ export default function CheckoutPage() {
         />
 
         {!isSubmitted && items.length > 0 && (
-          <div className="mt-6">
+          <div className="mt-5 sm:mt-6">
             <Button href="/cart">← Kosár szerkesztése</Button>
           </div>
         )}
 
         {feedbackMessage && (
           <div
-            className={`mt-8 rounded-2xl border p-5 font-semibold ${
+            className={`mt-6 rounded-2xl border p-4 text-sm font-semibold sm:mt-8 sm:p-5 sm:text-base ${
               feedbackType === "success"
                 ? "border-green-200 bg-green-50 text-green-800"
                 : "border-red-200 bg-red-50 text-red-800"
@@ -189,7 +189,7 @@ export default function CheckoutPage() {
             action={<Button href="/products">Termékek megtekintése</Button>}
           />
         ) : (
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_380px]">
+          <div className="mt-8 grid gap-6 sm:mt-10 lg:mt-12 lg:grid-cols-[minmax(0,1fr)_380px] lg:gap-8">
             <CheckoutForm
               formData={formData}
               errors={errors}

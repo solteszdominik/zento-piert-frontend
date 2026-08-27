@@ -21,13 +21,13 @@ export default function Page() {
     <>
       <Header />
 
-      <main className="mx-auto min-h-[60vh] max-w-7xl px-6 py-20">
-        <section className="mb-12 max-w-3xl">
+      <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-20">
+        <section className="mb-8 max-w-3xl sm:mb-12">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700">
             Kapcsolat
           </p>
 
-          <h1 className="text-3xl font-bold text-blue-950 md:text-5xl">
+          <h1 className="text-3xl font-bold text-blue-950 sm:text-4xl md:text-5xl">
             Lépjen kapcsolatba velünk
           </h1>
 
@@ -39,7 +39,7 @@ export default function Page() {
         </section>
 
         <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:rounded-3xl sm:p-6 md:p-8">
             <h2 className="mb-6 text-2xl font-bold text-blue-950">
               Üzenetküldés
             </h2>
@@ -80,7 +80,7 @@ export default function Page() {
 
               <button
                 type="submit"
-                className="rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
+                className="w-full rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 sm:w-auto"
               >
                 Üzenet küldése
               </button>
@@ -88,7 +88,7 @@ export default function Page() {
           </div>
 
           <div className="space-y-8">
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm md:p-8">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:rounded-3xl sm:p-6 md:p-8">
               <h2 className="mb-6 text-2xl font-bold text-blue-950">
                 Elérhetőségek
               </h2>
@@ -109,7 +109,7 @@ export default function Page() {
               <iframe
                 title="Zentó-Piért Kft. térkép"
                 src="https://www.google.com/maps?q=3881%20Aba%C3%BAjsz%C3%A1nt%C3%B3%2C%20B%C3%A9ke%20%C3%BAt%2018&output=embed"
-                className="h-80 w-full border-0"
+                className="h-64 w-full border-0 sm:h-80"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
