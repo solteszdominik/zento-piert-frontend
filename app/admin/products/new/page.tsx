@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -8,6 +9,7 @@ import {
   productService,
   type CreateProductInput,
 } from "@/services/productService";
+import { productImageService } from "@/services/productImageService";
 import { categoryService, type Category } from "@/services/categoryService";
 import type { Product } from "@/types/product";
 
@@ -49,6 +51,7 @@ export default function NewProductPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
 
@@ -83,6 +86,37 @@ export default function NewProductPage() {
     }));
   };
 
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      setError(null);
+      setIsUploadingImage(true);
+
+      const imageUrl = await productImageService.uploadImage(file);
+
+      setFormData((current) => ({
+        ...current,
+        imageUrl,
+      }));
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Nem sikerült feltölteni a képet.",
+      );
+    } finally {
+      setIsUploadingImage(false);
+      event.target.value = "";
+    }
+  };
+
   const handleCreate = async () => {
     setError(null);
 
@@ -110,13 +144,18 @@ export default function NewProductPage() {
       return;
     }
 
+    if (!formData.imageUrl) {
+      setError("Tölts fel képet a termékhez.");
+      return;
+    }
+
     const payload: CreateProductInput = {
       name,
       slug,
       description: formData.description.trim() || null,
       price,
       unit: formData.unit,
-      image_url: formData.imageUrl.trim() || null,
+      image_url: formData.imageUrl,
       category_id: formData.categoryId,
       is_available: formData.isAvailable,
       is_featured: formData.isFeatured,
@@ -171,7 +210,6 @@ export default function NewProductPage() {
       )}
 
       <div className="space-y-6 rounded-xl border p-6">
-        {/* TERMÉKNÉV */}
         <div>
           <label htmlFor="name" className="mb-2 block text-sm font-semibold">
             Terméknév
@@ -186,7 +224,6 @@ export default function NewProductPage() {
           />
         </div>
 
-        {/* SLUG */}
         <div>
           <label htmlFor="slug" className="mb-2 block text-sm font-semibold">
             Slug
@@ -211,7 +248,6 @@ export default function NewProductPage() {
           </p>
         </div>
 
-        {/* LEÍRÁS */}
         <div>
           <label
             htmlFor="description"
@@ -234,31 +270,63 @@ export default function NewProductPage() {
           />
         </div>
 
-        {/* KÉP */}
         <div>
           <label
-            htmlFor="imageUrl"
+            htmlFor="productImage"
             className="mb-2 block text-sm font-semibold"
           >
-            Kép elérési útja
+            Termékkép
           </label>
 
           <input
-            id="imageUrl"
-            type="text"
-            value={formData.imageUrl}
-            onChange={(event) =>
-              setFormData((current) => ({
-                ...current,
-                imageUrl: event.target.value,
-              }))
-            }
-            placeholder="/images/products/termek.jpg"
-            className="w-full rounded-md border px-3 py-2"
+            id="productImage"
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onChange={handleImageUpload}
+            disabled={isUploadingImage}
+            className="block w-full rounded-md border px-3 py-2 text-sm"
           />
+
+          <p className="mt-2 text-xs text-gray-500">
+            JPG, PNG vagy WEBP. Maximum 5 MB.
+          </p>
+
+          {isUploadingImage && (
+            <p className="mt-3 text-sm font-medium text-blue-700">
+              Kép feltöltése...
+            </p>
+          )}
+
+          {formData.imageUrl && (
+            <div className="mt-4">
+              <p className="mb-2 text-sm font-semibold">Kép előnézete</p>
+
+              <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-xl border bg-gray-50">
+                <Image
+                  src={formData.imageUrl}
+                  alt="Termékkép előnézete"
+                  fill
+                  className="object-contain p-4"
+                  sizes="384px"
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData((current) => ({
+                    ...current,
+                    imageUrl: "",
+                  }))
+                }
+                className="mt-3 text-sm font-medium text-red-600 underline"
+              >
+                Kép eltávolítása
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* KATEGÓRIA */}
         <div>
           <label
             htmlFor="category"
@@ -288,7 +356,6 @@ export default function NewProductPage() {
           </select>
         </div>
 
-        {/* MÁRKA + TERMÉKCSALÁD */}
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label htmlFor="brand" className="mb-2 block text-sm font-semibold">
@@ -357,7 +424,6 @@ export default function NewProductPage() {
           />
         </div>
 
-        {/* ÁR + EGYSÉG */}
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label htmlFor="price" className="mb-2 block text-sm font-semibold">
@@ -403,7 +469,6 @@ export default function NewProductPage() {
           </div>
         </div>
 
-        {/* BEÁLLÍTÁSOK */}
         <div className="space-y-4 border-t pt-6">
           <label className="flex cursor-pointer items-center gap-3">
             <input
@@ -436,12 +501,11 @@ export default function NewProductPage() {
           </label>
         </div>
 
-        {/* MENTÉS */}
         <div className="flex justify-end border-t pt-6">
           <button
             type="button"
             onClick={handleCreate}
-            disabled={isSaving}
+            disabled={isSaving || isUploadingImage}
             className="rounded-md bg-black px-5 py-2.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSaving ? "Létrehozás..." : "Termék létrehozása"}
