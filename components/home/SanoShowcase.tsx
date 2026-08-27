@@ -97,7 +97,7 @@ export default function SanoShowcase() {
           </div>
 
           <Link
-            href="/products?search=sano"
+            href="/products?brand=sano"
             className="w-fit rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
           >
             Összes Sano termék →
@@ -133,7 +133,7 @@ export default function SanoShowcase() {
               return (
                 <Link
                   key={item.fileName}
-                  href="/products?search=sano"
+                  href="/products?brand=sano"
                   className="group overflow-hidden rounded-3xl border border-blue-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-white">

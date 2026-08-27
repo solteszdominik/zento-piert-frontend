@@ -7,6 +7,7 @@ import { productService } from "@/services/productService";
 interface ProductsPageProps {
   searchParams?: Promise<{
     category?: string;
+    brand?: string;
     search?: string;
   }>;
 }
@@ -17,6 +18,7 @@ export default async function ProductsPage({
   const products = await productService.getProducts();
   const params = await searchParams;
   const selectedCategory = params?.category;
+  const selectedBrand = params?.brand?.toLowerCase();
   const search = params?.search?.toLowerCase() ?? "";
 
   const filteredProducts = products.filter((product) => {
@@ -24,12 +26,16 @@ export default async function ProductsPage({
       ? product.category === selectedCategory
       : true;
 
+    const matchesBrand = selectedBrand
+      ? product.brand?.toLowerCase() === selectedBrand
+      : true;
+
     const matchesSearch = search
       ? product.name.toLowerCase().includes(search) ||
         product.description.toLowerCase().includes(search)
       : true;
 
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesBrand && matchesSearch;
   });
 
   return (
