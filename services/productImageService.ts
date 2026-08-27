@@ -1,6 +1,13 @@
 import { supabase } from "@/lib/supabase/supabase";
 
 const BUCKET_NAME = "product-images";
+const PRODUCT_FOLDER = "products";
+
+export interface ProductStorageImage {
+  name: string;
+  path: string;
+  publicUrl: string;
+}
 
 function sanitizeFileName(fileName: string) {
   return fileName
@@ -23,7 +30,7 @@ export const productImageService = {
 
     const safeFileName = sanitizeFileName(file.name);
     const uniqueFileName = `${crypto.randomUUID()}-${safeFileName}`;
-    const filePath = `products/${uniqueFileName}`;
+    const filePath = `${PRODUCT_FOLDER}/${uniqueFileName}`;
 
     const { error } = await supabase.storage
       .from(BUCKET_NAME)
@@ -40,5 +47,37 @@ export const productImageService = {
     const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath);
 
     return data.publicUrl;
+  },
+
+  async getImages(): Promise<ProductStorageImage[]> {
+    const { data, error } = await supabase.storage
+      .from(BUCKET_NAME)
+      .list(PRODUCT_FOLDER, {
+        limit: 500,
+        sortBy: {
+          column: "name",
+          order: "asc",
+        },
+      });
+
+    if (error) {
+      throw new Error(`Nem sikerült betölteni a képeket: ${error.message}`);
+    }
+
+    return (data ?? [])
+      .filter((item) => item.id)
+      .map((item) => {
+        const path = `${PRODUCT_FOLDER}/${item.name}`;
+
+        const { data: publicUrlData } = supabase.storage
+          .from(BUCKET_NAME)
+          .getPublicUrl(path);
+
+        return {
+          name: item.name,
+          path,
+          publicUrl: publicUrlData.publicUrl,
+        };
+      });
   },
 };

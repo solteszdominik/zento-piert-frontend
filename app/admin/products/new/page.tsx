@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -9,9 +8,9 @@ import {
   productService,
   type CreateProductInput,
 } from "@/services/productService";
-import { productImageService } from "@/services/productImageService";
 import { categoryService, type Category } from "@/services/categoryService";
 import type { Product } from "@/types/product";
+import ProductImagePicker from "@/components/admin/ProductImagePicker";
 
 interface ProductFormData {
   name: string;
@@ -51,7 +50,6 @@ export default function NewProductPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
 
@@ -78,44 +76,6 @@ export default function NewProductPage() {
 
     loadPage();
   }, [router]);
-
-  const handleNameChange = (name: string) => {
-    setFormData((current) => ({
-      ...current,
-      name,
-    }));
-  };
-
-  const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    try {
-      setError(null);
-      setIsUploadingImage(true);
-
-      const imageUrl = await productImageService.uploadImage(file);
-
-      setFormData((current) => ({
-        ...current,
-        imageUrl,
-      }));
-    } catch (error) {
-      setError(
-        error instanceof Error
-          ? error.message
-          : "Nem sikerült feltölteni a képet.",
-      );
-    } finally {
-      setIsUploadingImage(false);
-      event.target.value = "";
-    }
-  };
 
   const handleCreate = async () => {
     setError(null);
@@ -145,7 +105,7 @@ export default function NewProductPage() {
     }
 
     if (!formData.imageUrl) {
-      setError("Tölts fel képet a termékhez.");
+      setError("Válassz vagy tölts fel képet a termékhez.");
       return;
     }
 
@@ -219,7 +179,12 @@ export default function NewProductPage() {
             id="name"
             type="text"
             value={formData.name}
-            onChange={(event) => handleNameChange(event.target.value)}
+            onChange={(event) =>
+              setFormData((current) => ({
+                ...current,
+                name: event.target.value,
+              }))
+            }
             className="w-full rounded-md border px-3 py-2"
           />
         </div>
@@ -271,60 +236,17 @@ export default function NewProductPage() {
         </div>
 
         <div>
-          <label
-            htmlFor="productImage"
-            className="mb-2 block text-sm font-semibold"
-          >
-            Termékkép
-          </label>
+          <p className="mb-3 block text-sm font-semibold">Termékkép</p>
 
-          <input
-            id="productImage"
-            type="file"
-            accept="image/png,image/jpeg,image/webp"
-            onChange={handleImageUpload}
-            disabled={isUploadingImage}
-            className="block w-full rounded-md border px-3 py-2 text-sm"
+          <ProductImagePicker
+            value={formData.imageUrl}
+            onChange={(imageUrl) =>
+              setFormData((current) => ({
+                ...current,
+                imageUrl,
+              }))
+            }
           />
-
-          <p className="mt-2 text-xs text-gray-500">
-            JPG, PNG vagy WEBP. Maximum 5 MB.
-          </p>
-
-          {isUploadingImage && (
-            <p className="mt-3 text-sm font-medium text-blue-700">
-              Kép feltöltése...
-            </p>
-          )}
-
-          {formData.imageUrl && (
-            <div className="mt-4">
-              <p className="mb-2 text-sm font-semibold">Kép előnézete</p>
-
-              <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-xl border bg-gray-50">
-                <Image
-                  src={formData.imageUrl}
-                  alt="Termékkép előnézete"
-                  fill
-                  className="object-contain p-4"
-                  sizes="384px"
-                />
-              </div>
-
-              <button
-                type="button"
-                onClick={() =>
-                  setFormData((current) => ({
-                    ...current,
-                    imageUrl: "",
-                  }))
-                }
-                className="mt-3 text-sm font-medium text-red-600 underline"
-              >
-                Kép eltávolítása
-              </button>
-            </div>
-          )}
         </div>
 
         <div>
@@ -505,7 +427,7 @@ export default function NewProductPage() {
           <button
             type="button"
             onClick={handleCreate}
-            disabled={isSaving || isUploadingImage}
+            disabled={isSaving}
             className="rounded-md bg-black px-5 py-2.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSaving ? "Létrehozás..." : "Termék létrehozása"}
