@@ -38,7 +38,7 @@ export default function ProductFilters() {
   };
 
   return (
-    <div className="mb-10 space-y-6">
+    <div className="mb-8 space-y-5 sm:mb-10 sm:space-y-6">
       <form className="max-w-xl">
         <input
           type="text"
@@ -66,7 +66,7 @@ export default function ProductFilters() {
               category: selectedCategory,
               brand: null,
             })}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+            className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
               !selectedBrand
                 ? "bg-blue-700 text-white"
                 : "border border-blue-100 bg-white text-blue-900 hover:border-blue-300 hover:bg-blue-50"
@@ -80,7 +80,7 @@ export default function ProductFilters() {
               category: selectedCategory,
               brand: "Sano",
             })}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+            className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
               selectedBrand?.toLowerCase() === "sano"
                 ? "bg-blue-700 text-white"
                 : "border border-blue-100 bg-white text-blue-900 hover:border-blue-300 hover:bg-blue-50"
@@ -100,7 +100,7 @@ export default function ProductFilters() {
               category: null,
               brand: selectedBrand,
             })}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+            className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
               !selectedCategory
                 ? "bg-blue-700 text-white"
                 : "border border-blue-100 bg-white text-blue-900 hover:border-blue-300 hover:bg-blue-50"
@@ -119,7 +119,7 @@ export default function ProductFilters() {
                   category: category.id,
                   brand: selectedBrand,
                 })}
-                className={`rounded-full px-5 py-2 text-sm font-semibold transition ${
+                className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
                   isActive
                     ? "bg-blue-700 text-white"
                     : "border border-blue-100 bg-white text-blue-900 hover:border-blue-300 hover:bg-blue-50"

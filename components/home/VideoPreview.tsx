@@ -64,7 +64,8 @@ export default function VideoPreview() {
           </p>
 
           <h2 className="mb-5 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">
-            Ismerd meg közelebbről a Zentó-Piért Kft.-t
+            Ismerd meg közelebbről a Zentó–Piért Kft. mindennapjait, gyártási
+            környezetét és termékkínálatát egy rövid bemutató videón keresztül.
           </h2>
 
           <p className="text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">

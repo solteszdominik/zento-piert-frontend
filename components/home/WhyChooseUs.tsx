@@ -1,15 +1,15 @@
 const items = [
   {
-    title: "Több évtizedes tapasztalat.",
-    text: "Kategóriákba rendezett termékek, egyszerű böngészés és későbbi webshop működésre előkészített felület.",
+    title: "Több mint 30 év tapasztalat",
+    text: "1991 óta foglalkozunk papírtermékek gyártásával és forgalmazásával, stabil szakmai háttérrel és folyamatos fejlődéssel.",
   },
   {
-    title: "Saját gyártás és stabil háttér.",
-    text: "A megjelenés nem csak lakossági vásárlóknak, hanem viszonteladóknak és partnereknek is bizalomépítő.",
+    title: "Saját gyártás, megbízható háttér",
+    text: "Több mint 3000 m² üzem, korszerű géppark és saját raktár biztosítja a gyors és kiszámítható kiszolgálást.",
   },
   {
-    title: "Megbízható kiszolgálás.",
-    text: "Később kosár, rendeléskezelés, admin, videók és termékfeltöltés is ráépíthető.",
+    title: "Országos partnerkapcsolatok",
+    text: "Lakossági vásárlókat, viszonteladókat és céges partnereket egyaránt kiszolgálunk megbízható logisztikai háttérrel.",
   },
 ];
 

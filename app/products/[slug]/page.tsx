@@ -32,15 +32,15 @@ export default async function ProductDetailPage({
     <>
       <main>
         <section className="bg-gradient-to-br from-blue-50 via-white to-sky-100">
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center">
-            <div className="rounded-[2rem] bg-white p-5 shadow-xl shadow-blue-100">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-slate-50">
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:items-center md:gap-12 md:py-20">
+            <div className="rounded-[1.5rem] bg-white p-3 shadow-xl shadow-blue-100 sm:rounded-[2rem] sm:p-5">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-slate-50 sm:rounded-[1.5rem]">
                 <Image
                   src={product.imageUrl}
                   alt={product.name}
                   fill
                   priority
-                  className="object-contain p-6"
+                  className="object-contain p-4 sm:p-6"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -49,51 +49,51 @@ export default async function ProductDetailPage({
             <div>
               <Link
                 href="/products"
-                className="mb-6 inline-flex text-sm font-semibold text-blue-700 transition hover:text-blue-900"
+                className="mb-5 inline-flex text-sm font-semibold text-blue-700 transition hover:text-blue-900 sm:mb-6"
               >
                 ← Vissza a termékekhez
               </Link>
 
               {category && (
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-blue-700 sm:text-sm">
                   {category.name}
                 </p>
               )}
 
-              <h1 className="mb-5 text-4xl font-bold tracking-tight text-blue-950 md:text-5xl">
+              <h1 className="mb-4 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl md:mb-5 md:text-5xl">
                 {product.name}
               </h1>
 
-              <p className="mb-6 text-lg leading-8 text-slate-600">
+              <p className="mb-5 text-base leading-7 text-slate-600 sm:mb-6 sm:text-lg sm:leading-8">
                 {product.description}
               </p>
 
               {(product.brand ||
                 product.productLine ||
                 product.packageSize) && (
-                <div className="mb-8 flex flex-wrap gap-2">
+                <div className="mb-6 flex flex-wrap gap-2 sm:mb-8">
                   {product.brand && (
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800 sm:text-sm">
                       Márka: {product.brand}
                     </span>
                   )}
 
                   {product.productLine && (
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800 sm:text-sm">
                       Termékcsalád: {product.productLine}
                     </span>
                   )}
 
                   {product.packageSize && (
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-800">
+                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800 sm:text-sm">
                       Kiszerelés: {product.packageSize}
                     </span>
                   )}
                 </div>
               )}
 
-              <div className="mb-6">
-                <p className="text-2xl font-bold text-blue-950">
+              <div className="mb-5 sm:mb-6">
+                <p className="text-xl font-bold text-blue-950 sm:text-2xl">
                   {product.price.toLocaleString("hu-HU")} Ft / {product.unit}
                 </p>
 
@@ -105,13 +105,13 @@ export default async function ProductDetailPage({
               </div>
 
               <div>
-                <div className="flex flex-wrap gap-4">
+                <div className="w-full sm:w-auto">
                   <AddToCartButton product={product} />
                 </div>
 
                 <div className="mt-3 flex items-center gap-2 text-sm font-medium">
                   <span
-                    className={`h-2.5 w-2.5 rounded-full ${
+                    className={`h-2.5 w-2.5 shrink-0 rounded-full ${
                       product.isAvailable ? "bg-green-500" : "bg-slate-400"
                     }`}
                   />

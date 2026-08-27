@@ -10,22 +10,24 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="group flex h-full flex-col rounded-3xl border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100">
+    <article className="group flex h-full flex-col rounded-2xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100 sm:rounded-3xl sm:p-5">
       <Link
         href={`/products/${product.slug}`}
-        className="relative mb-5 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50"
+        className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-slate-50 sm:mb-5 sm:rounded-2xl"
       >
         <Image
           src={product.imageUrl}
           alt={product.name}
           fill
-          className="object-contain p-4 transition duration-300 group-hover:scale-105"
+          className="object-contain p-3 transition duration-300 group-hover:scale-105 sm:p-4"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </Link>
 
       <div className="flex flex-1 flex-col">
-        <h3 className="text-lg font-bold text-blue-950">{product.name}</h3>
+        <h3 className="text-base font-bold text-blue-950 sm:text-lg">
+          {product.name}
+        </h3>
 
         <p className="mt-2 text-sm leading-6 text-slate-600">
           {product.description}

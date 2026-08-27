@@ -44,22 +44,23 @@ export default async function ProductsPage({
 
       <main>
         <section className="bg-gradient-to-br from-blue-50 via-white to-sky-100">
-          <div className="mx-auto max-w-7xl px-6 py-20">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 md:py-20">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700">
               Termékek
             </p>
 
-            <h1 className="mb-5 max-w-3xl text-4xl font-bold tracking-tight text-blue-950 md:text-5xl">
-              Átlátható papírtermék kínálat egy helyen.
+            <h1 className="mb-4 max-w-3xl text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl md:mb-5 md:text-5xl">
+              Termékeink
             </h1>
 
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
-              Böngéssz kategóriák szerint, vagy keress konkrét terméknévre.
+            <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+              Papírtermékek, csomagolóanyagok és háztartási kiegészítők saját
+              gyártásból és megbízható beszállítóktól.
             </p>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-6 py-16">
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
           <ProductFilters />
 
           <div className="mb-8">
@@ -74,7 +75,7 @@ export default async function ProductsPage({
           {filteredProducts.length > 0 ? (
             <ProductGrid products={filteredProducts} />
           ) : (
-            <div className="rounded-3xl border border-blue-100 bg-blue-50 p-10 text-center">
+            <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 text-center sm:rounded-3xl sm:p-10">
               <h2 className="text-xl font-bold text-blue-950">Nincs találat</h2>
               <p className="mt-2 text-slate-600">
                 Próbálj másik kategóriát vagy keresési kifejezést.

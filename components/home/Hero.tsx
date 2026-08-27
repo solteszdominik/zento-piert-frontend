@@ -10,13 +10,14 @@ export default function Hero() {
           </p>
 
           <h1 className="mb-5 text-4xl font-bold tracking-tight text-blue-950 sm:text-5xl md:mb-6 md:text-6xl">
-            Minőségi papírtermékek, átlátható kínálattal.
+            Papírtermékek gyártása és forgalmazása több mint 30 év
+            tapasztalatával.
           </h1>
 
           <p className="mb-7 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 md:mb-8">
-            Céges és lakossági partnerek számára kínálunk papírárukat,
-            csomagolóanyagokat és háztartási kiegészítőket modern, könnyen
-            kezelhető webshop felületen.
+            A Zentó–Piért Kft. saját gyártású és gondosan válogatott
+            papírtermékekkel, csomagolóanyagokkal és háztartási kiegészítőkkel
+            szolgálja ki partnereit országszerte.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
