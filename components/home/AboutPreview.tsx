@@ -12,7 +12,7 @@ export default function AboutPreview() {
             width={1536}
             height={1024}
             priority
-            className="h-auto w-full object-cover"
+            className="h-auto w-full rounded-[1.25rem] object-cover sm:rounded-[1.5rem]"
           />
         </div>
 
@@ -22,27 +22,27 @@ export default function AboutPreview() {
           </p>
 
           <h2 className="mb-5 text-2xl font-bold tracking-tight text-blue-950 sm:text-3xl md:text-4xl">
-            Az abaújszántói Zentó – Piért Kft. nevében köszöntöm Önt! Az
+            Az abaújszántói Zentó–Piért Kft. nevében köszöntöm Önt! Az
             alábbiakban bemutatom társaságunkat.
           </h2>
 
           <p className="mb-5 text-sm leading-7 text-slate-600 sm:text-base">
-            1991 – es megalakulásunk óta (Zentó Bt – Soltész Papír Kft) jelentős
-            fejlődésen, átalakuláson vagyunk túl, a kezdeti 1 db papírzacskó
-            gyártó gépet komoly géppark váltotta fel, jelenleg az alábbi
-            gépekkel rendelkezünk:
+            1991–es megalakulásunk óta (Zentó Bt–Soltész Papír Kft) jelentős
+            fejlődésen, átalakuláson vagyunk túl, a kezdeti 1 db
+            papírzacskógyártó gépet komoly géppark váltotta fel, jelenleg az
+            alábbi gépekkel rendelkezünk:
           </p>
 
           <p className="mb-7 text-sm leading-7 text-slate-600 sm:mb-8 sm:text-base">
-            Több mint 3000 m2 saját tulajdonú üzem, raktár, iroda biztosítja a
-            zavartalan működést.
+            Több mint 3000 3000 m² saját tulajdonú üzem, raktár, iroda
+            biztosítja a zavartalan működést.
             <br />
             20 féle saját gyártású termékkel rendelkezünk, 20 fő munkatárssal
             látjuk el feladatainkat, ezen kívül 2 rehabilitációs céggel vagyunk
-            kapcsolatban, ahol 20 -30 fő csökkent munkaképességű embernek
+            kapcsolatban, ahol 20-30 fő csökkent munkaképességű embernek
             folyamatosan csomagolási munkát biztosítunk.
             <br />
-            Szállításainkat saját illetve bérelt teherautókkal, kamionokkal
+            Szállításainkat saját, illetve bérelt teherautókkal, kamionokkal
             látjuk el.
           </p>
 
@@ -50,7 +50,7 @@ export default function AboutPreview() {
             href="/about"
             className="inline-flex rounded-full border border-blue-200 px-5 py-2.5 text-sm font-semibold text-blue-900 transition hover:border-blue-400 sm:px-6 sm:py-3 sm:text-base"
           >
-            Tudj meg többet
+            Tudjon meg többet
           </Link>
         </div>
       </div>

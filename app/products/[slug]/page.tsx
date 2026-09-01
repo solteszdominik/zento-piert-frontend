@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import { SHOP_ENABLED } from "@/config/shop";
 import { categories } from "@/data/categories";
 import { productService } from "@/services/productService";
+import Header from "@/components/layout/Header";
 
 const BASE_URL = "https://zento-piert.hu";
 
@@ -80,6 +81,7 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      <Header />
       <main>
         <section className="bg-gradient-to-br from-blue-50 via-white to-sky-100">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:items-center md:gap-12 md:py-20">

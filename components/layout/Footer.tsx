@@ -46,7 +46,7 @@ export default function Footer() {
           <h3 className="mb-4 font-bold text-blue-950">Kapcsolat</h3>
 
           <div className="flex flex-col gap-3 text-sm leading-6 text-slate-600">
-            <span>info@zento-piért.hu</span>
+            <span>info@zento-piert.hu</span>
             <span>Tel: +36/47-330-003</span>
             <span>Iroda: +36/20-403-2414</span>
             <span>3881 Abaújszántó, Béke út 18.</span>

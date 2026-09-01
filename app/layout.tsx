@@ -16,6 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zento-piert.hu"),
+
   title: {
     default: "Zentó-Piért Kft. | Papírtermékek és csomagolóanyagok",
     template: "%s | Zentó-Piért Kft.",

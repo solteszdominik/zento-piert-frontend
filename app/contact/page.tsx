@@ -22,7 +22,7 @@ const contactItems = [
   },
   {
     label: "E-mail",
-    value: "info@zento-piért.hu",
+    value: "info@zento-piert.hu",
   },
 ];
 
@@ -50,51 +50,21 @@ export default function Page() {
 
         <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:rounded-3xl sm:p-6 md:p-8">
-            <h2 className="mb-6 text-2xl font-bold text-blue-950">
-              Üzenetküldés
+            <h2 className="mb-4 text-2xl font-bold text-blue-950">
+              Kapcsolatfelvétel
             </h2>
 
-            <form className="space-y-5">
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
-                  Név
-                </label>
-                <input
-                  type="text"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none transition focus:border-blue-500"
-                  placeholder="Az Ön neve"
-                />
-              </div>
+            <p className="leading-7 text-slate-600">
+              Kérdés, ajánlatkérés vagy együttműködés esetén írjon nekünk
+              közvetlenül e-mailben, vagy keressen minket telefonon.
+            </p>
 
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
-                  E-mail cím
-                </label>
-                <input
-                  type="email"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none transition focus:border-blue-500"
-                  placeholder="email@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="mb-2 block text-sm font-semibold text-slate-700">
-                  Üzenet
-                </label>
-                <textarea
-                  rows={6}
-                  className="w-full resize-none rounded-xl border border-slate-200 px-4 py-3 outline-none transition focus:border-blue-500"
-                  placeholder="Írja meg üzenetét..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 sm:w-auto"
-              >
-                Üzenet küldése
-              </button>
-            </form>
+            <a
+              href="mailto:info@zento-piert.hu"
+              className="mt-6 inline-flex rounded-full bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800"
+            >
+              E-mail küldése
+            </a>
           </div>
 
           <div className="space-y-8">
