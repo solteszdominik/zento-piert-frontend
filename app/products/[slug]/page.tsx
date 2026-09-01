@@ -1,17 +1,66 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import Footer from "@/components/layout/Footer";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import Footer from "@/components/layout/Footer";
+import { SHOP_ENABLED } from "@/config/shop";
 import { categories } from "@/data/categories";
 import { productService } from "@/services/productService";
-import { SHOP_ENABLED } from "@/config/shop";
+
+const BASE_URL = "https://zento-piert.hu";
 
 interface ProductDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ProductDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    const product = await productService.getProductBySlug(slug);
+
+    const description =
+      product.description ||
+      `${product.name} – termékinformációk a Zentó-Piért Kft. kínálatából.`;
+
+    return {
+      title: product.name,
+      description,
+      alternates: {
+        canonical: `${BASE_URL}/products/${product.slug}`,
+      },
+      openGraph: {
+        type: "website",
+        locale: "hu_HU",
+        title: product.name,
+        description,
+        url: `${BASE_URL}/products/${product.slug}`,
+        siteName: "Zentó-Piért Kft.",
+        images: product.imageUrl
+          ? [
+              {
+                url: product.imageUrl,
+                alt: product.name,
+              },
+            ]
+          : undefined,
+      },
+    };
+  } catch {
+    return {
+      title: "Termék",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
 }
 
 export default async function ProductDetailPage({

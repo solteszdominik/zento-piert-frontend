@@ -1,5 +1,3 @@
-// import CategoryPreview from "@/components/home/CategoryPreview";
-// import FeaturedProducts from "@/components/home/FeaturedProducts";
 import AboutPreview from "@/components/home/AboutPreview";
 import ContactCta from "@/components/home/ContactCta";
 import Hero from "@/components/home/Hero";
@@ -19,8 +17,6 @@ export default function Home() {
         <AboutPreview />
         <WhyChooseUs />
         <SanoShowcase />
-        {/* <CategoryPreview /> */}
-        {/* <FeaturedProducts /> */}
         <VideoPreview />
         <ContactCta />
         <TendersSection />
