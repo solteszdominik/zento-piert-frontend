@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Rólunk",
+  description:
+    "Ismerje meg az abaújszántói Zentó-Piért Kft. történetét, gyártási kapacitását, gépparkját és üzleti partnereit.",
+  alternates: {
+    canonical: "https://zento-piert.hu/about",
+  },
+};
 
 const machines = [
   "2 db automata papírzsebkendő gép",

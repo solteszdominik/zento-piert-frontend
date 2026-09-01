@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { tenders } from "@/data/tenders";
+
+export const metadata: Metadata = {
+  title: "Pályázatok",
+  description: "A Zentó-Piért Kft. megnyert pályázatai és fejlesztései.",
+  alternates: {
+    canonical: "https://zento-piert.hu/tenders",
+  },
+};
 
 export default function Page() {
   return (

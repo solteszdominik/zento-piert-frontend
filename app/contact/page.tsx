@@ -1,5 +1,15 @@
+import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Kapcsolat",
+  description:
+    "Lépjen kapcsolatba a Zentó-Piért Kft.-vel. Elérhetőségek, cím, telefonszám és kapcsolatfelvételi lehetőség.",
+  alternates: {
+    canonical: "https://zento-piert.hu/contact",
+  },
+};
 
 const contactItems = [
   {

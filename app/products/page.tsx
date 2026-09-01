@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import ProductFilters from "@/components/products/ProductFilter";
 import ProductGrid from "@/components/products/ProductGrid";
 import { productService } from "@/services/productService";
+
+export const metadata: Metadata = {
+  title: "Termékek",
+  description:
+    "Papírtermékek, csomagolóanyagok és háztartási termékek a Zentó-Piért Kft. kínálatából.",
+  alternates: {
+    canonical: "https://zento-piert.hu/products",
+  },
+};
 
 interface ProductsPageProps {
   searchParams?: Promise<{
