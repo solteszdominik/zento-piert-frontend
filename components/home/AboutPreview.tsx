@@ -1,11 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPreview() {
   return (
     <section className="bg-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-16 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12 md:py-20">
         <div className="rounded-[1.5rem] bg-blue-50 p-3 sm:rounded-[2rem] sm:p-6">
-          <div className="aspect-[4/3] rounded-[1.25rem] bg-gradient-to-br from-blue-100 to-blue-300 sm:rounded-[1.5rem]" />
+          <Image
+            src="/images/zento-bolt-iroda.png"
+            alt="A Zentó-Piért Kft. abaújszántói üzlete"
+            width={1536}
+            height={1024}
+            priority
+            className="h-auto w-full object-cover"
+          />
         </div>
 
         <div>

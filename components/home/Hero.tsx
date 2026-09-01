@@ -1,4 +1,5 @@
 import Button from "../ui/Button";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -31,7 +32,14 @@ export default function Hero() {
 
         <div className="relative pb-5 sm:pb-0">
           <div className="rounded-[1.5rem] bg-white p-3 shadow-xl shadow-blue-100 sm:rounded-[2rem] sm:p-4">
-            <div className="aspect-[4/3] rounded-[1.25rem] bg-gradient-to-br from-blue-100 via-white to-blue-300 sm:rounded-[1.5rem]" />
+            <Image
+              src="/images/zento-termekek.jpg"
+              alt="A Zentó-Piért Kft. termékei."
+              width={1536}
+              height={1024}
+              priority
+              className="h-auto w-full object-cover"
+            />
           </div>
 
           <div className="absolute bottom-0 left-3 rounded-2xl bg-blue-950 px-4 py-3 text-white shadow-lg sm:-bottom-6 sm:-left-6 sm:p-5">

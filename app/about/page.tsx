@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Rólunk",
@@ -76,33 +77,46 @@ export default function Page() {
       <Header />
 
       <main className="mx-auto min-h-[60vh] max-w-7xl px-6 py-20">
-        <section className="max-w-4xl">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700">
-            Bemutatkozás
-          </p>
-
-          <h1 className="text-3xl font-bold text-blue-950 md:text-5xl">
-            Az abaújszántói Zentó–Piért Kft.
-          </h1>
-
-          <div className="mt-8 space-y-5 leading-7 text-slate-600">
-            <p>
-              Az abaújszántói Zentó–Piért Kft. nevében köszöntöm Önt! Az
-              alábbiakban bemutatom társaságunkat.
+        <section className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-blue-700">
+              Bemutatkozás
             </p>
 
-            <p>
-              Székhelyünk és telephelyünk:{" "}
-              <strong className="text-slate-800">
-                3881 Abaújszántó, Béke út 18.
-              </strong>
-            </p>
+            <h1 className="text-3xl font-bold text-blue-950 md:text-5xl">
+              Az abaújszántói Zentó–Piért Kft.
+            </h1>
 
-            <p>
-              1991-es megalakulásunk óta jelentős fejlődésen és átalakuláson
-              mentünk keresztül. A kezdeti 1 db papírzacskó gyártó gépet mára
-              komoly géppark váltotta fel.
-            </p>
+            <div className="mt-8 space-y-5 leading-7 text-slate-600">
+              <p>
+                Az abaújszántói Zentó–Piért Kft. nevében köszöntöm Önt! Az
+                alábbiakban bemutatom társaságunkat.
+              </p>
+
+              <p>
+                Székhelyünk és telephelyünk:{" "}
+                <strong className="text-slate-800">
+                  3881 Abaújszántó, Béke út 18.
+                </strong>
+              </p>
+
+              <p>
+                1991-es megalakulásunk óta jelentős fejlődésen és átalakuláson
+                mentünk keresztül. A kezdeti 1 db papírzacskó gyártó gépet mára
+                komoly géppark váltotta fel.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg">
+            <Image
+              src="/images/zento-bolt-iroda.png"
+              alt="A Zentó-Piért Kft. abaújszántói üzlete"
+              width={1536}
+              height={1024}
+              priority
+              className="h-auto w-full object-cover"
+            />
           </div>
         </section>
 
