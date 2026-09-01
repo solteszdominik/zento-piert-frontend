@@ -55,11 +55,11 @@ export default function AdminProductsPage() {
   }, [products, search]);
 
   if (isLoading) {
-    return <main className="p-8">Betöltés...</main>;
+    return <main className="px-4 py-6 sm:px-6 sm:py-8">Betöltés...</main>;
   }
 
   return (
-    <main className="mx-auto max-w-7xl p-8">
+    <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <button
@@ -70,7 +70,7 @@ export default function AdminProductsPage() {
             ← Vissza az adminhoz
           </button>
 
-          <h1 className="text-3xl font-bold">Termékek</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">Termékek</h1>
 
           <p className="mt-1 text-sm text-gray-500">Termékek kezelése</p>
         </div>
@@ -78,7 +78,7 @@ export default function AdminProductsPage() {
         <button
           type="button"
           onClick={() => router.push("/admin/products/new")}
-          className="rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800"
+          className="w-full rounded-md bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-800 sm:w-auto"
         >
           + Új termék
         </button>
@@ -100,20 +100,20 @@ export default function AdminProductsPage() {
         <p>Nincs találat.</p>
       ) : (
         <div className="overflow-x-auto rounded-xl border">
-          <table className="w-full text-left text-sm">
+          <table className="min-w-[760px] w-full text-left text-sm">
             <thead className="border-b bg-gray-50">
               <tr>
                 <th className="px-4 py-3">Termék</th>
 
                 <th className="px-4 py-3">Kategória</th>
 
-                <th className="px-4 py-3">Ár</th>
+                <th className="px-4 py-3 whitespace-nowrap">Ár</th>
 
-                <th className="px-4 py-3">Egység</th>
+                <th className="px-4 py-3 whitespace-nowrap">Egység</th>
 
-                <th className="px-4 py-3">Elérhető</th>
+                <th className="px-4 py-3 whitespace-nowrap">Elérhető</th>
 
-                <th className="px-4 py-3">Kiemelt</th>
+                <th className="px-4 py-3 whitespace-nowrap">Kiemelt</th>
               </tr>
             </thead>
 

@@ -142,11 +142,11 @@ export default function NewProductPage() {
   };
 
   if (isLoading) {
-    return <main className="p-8">Betöltés...</main>;
+    return <main className="px-4 py-6 sm:px-6 sm:py-8">Betöltés...</main>;
   }
 
   return (
-    <main className="mx-auto max-w-3xl p-8">
+    <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
       <button
         type="button"
         onClick={() => router.push("/admin/products")}
@@ -156,7 +156,7 @@ export default function NewProductPage() {
       </button>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Új termék</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Új termék</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           Új termék felvétele a webshopba.
@@ -169,7 +169,7 @@ export default function NewProductPage() {
         </div>
       )}
 
-      <div className="space-y-6 rounded-xl border p-6">
+      <div className="space-y-5 rounded-xl border p-4 sm:space-y-6 sm:p-6">
         <div>
           <label htmlFor="name" className="mb-2 block text-sm font-semibold">
             Terméknév
@@ -278,7 +278,7 @@ export default function NewProductPage() {
           </select>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           <div>
             <label htmlFor="brand" className="mb-2 block text-sm font-semibold">
               Márka
@@ -346,7 +346,7 @@ export default function NewProductPage() {
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           <div>
             <label htmlFor="price" className="mb-2 block text-sm font-semibold">
               Ár (Ft)
@@ -423,12 +423,12 @@ export default function NewProductPage() {
           </label>
         </div>
 
-        <div className="flex justify-end border-t pt-6">
+        <div className="flex border-t pt-6 sm:justify-end">
           <button
             type="button"
             onClick={handleCreate}
             disabled={isSaving}
-            className="rounded-md bg-black px-5 py-2.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-md bg-black px-5 py-2.5 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
           >
             {isSaving ? "Létrehozás..." : "Termék létrehozása"}
           </button>

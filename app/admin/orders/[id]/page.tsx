@@ -77,12 +77,12 @@ export default function AdminOrderDetailsPage() {
   };
 
   if (isLoading) {
-    return <main className="p-8">Betöltés...</main>;
+    return <main className="px-4 py-6 sm:px-6 sm:py-8">Betöltés...</main>;
   }
 
   if (error && !order) {
     return (
-      <main className="p-8">
+      <main className="px-4 py-6 sm:px-6 sm:py-8">
         <p className="text-red-600">{error}</p>
       </main>
     );
@@ -90,7 +90,7 @@ export default function AdminOrderDetailsPage() {
 
   if (!order) {
     return (
-      <main className="p-8">
+      <main className="px-4 py-6 sm:px-6 sm:py-8">
         <p>A rendelés nem található.</p>
       </main>
     );
@@ -99,7 +99,7 @@ export default function AdminOrderDetailsPage() {
   const shippingMethod = shippingMethods[order.shipping_method];
 
   return (
-    <main className="mx-auto max-w-5xl p-8">
+    <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
       <button
         type="button"
         onClick={() => router.push("/admin/orders")}
@@ -109,7 +109,9 @@ export default function AdminOrderDetailsPage() {
       </button>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">{order.order_number}</h1>
+        <h1 className="break-words text-2xl font-bold sm:text-3xl">
+          {order.order_number}
+        </h1>
 
         <p className="mt-1 text-sm text-gray-500">
           {new Date(order.created_at).toLocaleString("hu-HU")}
@@ -119,7 +121,7 @@ export default function AdminOrderDetailsPage() {
       {error && <p className="mb-6 text-red-600">{error}</p>}
 
       <div className="grid gap-6 md:grid-cols-2">
-        <section className="rounded-xl border p-6">
+        <section className="rounded-xl border p-4 sm:p-6">
           <h2 className="mb-4 text-xl font-semibold">Vásárló</h2>
 
           <div className="space-y-2">
@@ -148,7 +150,7 @@ export default function AdminOrderDetailsPage() {
           </div>
         </section>
 
-        <section className="rounded-xl border p-6">
+        <section className="rounded-xl border p-4 sm:p-6">
           <h2 className="mb-4 text-xl font-semibold">Rendelés</h2>
 
           <div className="space-y-5">
@@ -157,14 +159,14 @@ export default function AdminOrderDetailsPage() {
                 Státusz
               </label>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <select
                   id="status"
                   value={status}
                   onChange={(event) =>
                     setStatus(event.target.value as OrderStatus)
                   }
-                  className="rounded-md border px-3 py-2"
+                  className="w-full rounded-md border px-3 py-2 sm:w-auto"
                 >
                   <option value="new">Új</option>
 
@@ -179,7 +181,7 @@ export default function AdminOrderDetailsPage() {
                   type="button"
                   onClick={handleStatusChange}
                   disabled={isSavingStatus || status === order.status}
-                  className="rounded-md bg-black px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-40"
+                  className="w-full rounded-md bg-black px-4 py-2 text-white disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
                 >
                   {isSavingStatus ? "Mentés..." : "Mentés"}
                 </button>
@@ -219,7 +221,7 @@ export default function AdminOrderDetailsPage() {
         </section>
       </div>
 
-      <section className="mt-6 rounded-xl border p-6">
+      <section className="mt-6 rounded-xl border p-4 sm:p-6">
         <h2 className="mb-4 text-xl font-semibold">Termékek</h2>
 
         {order.order_items.length === 0 ? (
@@ -231,7 +233,7 @@ export default function AdminOrderDetailsPage() {
             {order.order_items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between gap-4 py-3"
+                className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
               >
                 <div>
                   <p className="font-medium">{item.product_name}</p>
@@ -241,7 +243,7 @@ export default function AdminOrderDetailsPage() {
                   </p>
                 </div>
 
-                <div className="text-right">
+                <div className="sm:text-right">
                   <p className="font-medium">
                     {item.quantity} {item.unit}
                   </p>

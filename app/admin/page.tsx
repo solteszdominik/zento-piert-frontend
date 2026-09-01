@@ -13,10 +13,10 @@ export default function AdminPage() {
   };
 
   return (
-    <main className="mx-auto max-w-5xl p-8">
-      <div className="mb-10 flex items-center justify-between">
+    <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
+      <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Zentó-Piért Admin</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">Zentó-Piért Admin</h1>
 
           <p className="mt-1 text-sm text-gray-500">Adminisztrációs felület</p>
         </div>
@@ -24,7 +24,7 @@ export default function AdminPage() {
         <button
           type="button"
           onClick={handleLogout}
-          className="rounded-md border px-4 py-2 text-sm"
+          className="w-full rounded-md border px-4 py-2 text-sm transition hover:bg-gray-50 sm:w-auto"
         >
           Kijelentkezés
         </button>
@@ -34,7 +34,7 @@ export default function AdminPage() {
         <button
           type="button"
           onClick={() => router.push("/admin/orders")}
-          className="rounded-xl border p-6 text-left transition hover:bg-gray-50"
+          className="rounded-xl border p-5 text-left transition hover:bg-gray-50 sm:p-6"
         >
           <h2 className="text-xl font-semibold">Rendelések</h2>
 
@@ -45,7 +45,7 @@ export default function AdminPage() {
         <button
           type="button"
           onClick={() => router.push("/admin/products")}
-          className="rounded-xl border p-6 text-left transition hover:bg-gray-50"
+          className="rounded-xl border p-5 text-left transition hover:bg-gray-50 sm:p-6"
         >
           <h2 className="text-xl font-semibold">Termékek</h2>
 

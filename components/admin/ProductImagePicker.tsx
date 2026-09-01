@@ -111,7 +111,7 @@ export default function ProductImagePicker({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border bg-gray-50 p-4">
+      <div className="rounded-xl border bg-gray-50 p-3 sm:p-4">
         <h3 className="mb-4 text-sm font-semibold">Új kép feltöltése</h3>
 
         <div className="mb-4">

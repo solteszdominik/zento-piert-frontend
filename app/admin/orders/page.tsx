@@ -78,14 +78,14 @@ export default function AdminPage() {
   };
 
   if (isLoading) {
-    return <main className="p-8">Betöltés...</main>;
+    return <main className="px-4 py-6 sm:px-6 sm:py-8">Betöltés...</main>;
   }
 
   return (
-    <main className="p-8">
+    <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Rendelések</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">Rendelések</h1>
           <p className="mt-1 text-sm text-gray-500">Rendelések kezelése</p>
         </div>
 
@@ -114,7 +114,7 @@ export default function AdminPage() {
           onChange={(event) =>
             setStatusFilter(event.target.value as OrderStatus | "all")
           }
-          className="rounded-md border px-3 py-2"
+          className="w-full rounded-md border px-3 py-2 md:w-auto"
         >
           <option value="all">Minden státusz</option>
 
@@ -132,20 +132,20 @@ export default function AdminPage() {
         <p>Nincs a feltételeknek megfelelő rendelés.</p>
       ) : (
         <div className="overflow-x-auto rounded-xl border">
-          <table className="w-full text-left text-sm">
+          <table className="min-w-[850px] w-full text-left text-sm">
             <thead className="border-b bg-gray-50">
               <tr>
-                <th className="px-4 py-3">Rendelésszám</th>
+                <th className="whitespace-nowrap px-4 py-3">Rendelésszám</th>
 
-                <th className="px-4 py-3">Vásárló</th>
+                <th className="whitespace-nowrap px-4 py-3">Vásárló</th>
 
                 <th className="px-4 py-3">E-mail</th>
 
-                <th className="px-4 py-3">Státusz</th>
+                <th className="whitespace-nowrap px-4 py-3">Státusz</th>
 
-                <th className="px-4 py-3">Dátum</th>
+                <th className="whitespace-nowrap px-4 py-3">Dátum</th>
 
-                <th className="px-4 py-3">Tételek</th>
+                <th className="whitespace-nowrap px-4 py-3">Tételek</th>
               </tr>
             </thead>
 
