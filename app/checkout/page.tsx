@@ -3,21 +3,24 @@
 import { useState } from "react";
 import type { FormEventHandler } from "react";
 
-import { createOrder } from "@/services/order.service";
+import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Button from "@/components/ui/Button";
+import EmptyState from "@/components/ui/EmptyState";
+import PageHeader from "@/components/ui/PageHeader";
+import CheckoutForm from "@/components/order/OrderForm";
+import OrderSummary from "@/components/order/OrderSummary";
+
+import { SHOP_ENABLED } from "@/config/shop";
 import { useCartStore } from "@/features/cart/cart.store";
 import { useToastStore } from "@/features/toast/toast.store";
 import { getCartTotalPrice } from "@/lib/cart";
-import Button from "@/components/ui/Button";
 import {
   hasCheckoutErrors,
   validateCheckoutForm,
   type CheckoutFormErrors,
 } from "@/lib/validation/order";
-import PageHeader from "@/components/ui/PageHeader";
-import EmptyState from "@/components/ui/EmptyState";
-import CheckoutForm from "@/components/order/OrderForm";
-import OrderSummary from "@/components/order/OrderSummary";
+import { createOrder } from "@/services/order.service";
 import type { CreateOrderInput, OrderFormData } from "@/types/order";
 
 const initialFormData: OrderFormData = {
@@ -151,8 +154,28 @@ export default function CheckoutPage() {
     }
   };
 
+  if (!SHOP_ENABLED) {
+    return (
+      <>
+        <Header />
+
+        <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+          <EmptyState
+            title="Az online rendelés még nem elérhető"
+            description="A webshop rendelési funkciója hamarosan indul. Addig is böngészheted termékeinket."
+            action={<Button href="/products">Termékek megtekintése</Button>}
+          />
+        </main>
+
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
+      <Header />
+
       <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <PageHeader
           badge="Rendelés"

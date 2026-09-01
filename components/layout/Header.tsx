@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import HeaderCartButton from "../cart/HeaderCartButton";
+import { SHOP_ENABLED } from "@/config/shop";
 
 const navItems = [
   { href: "/", label: "Főoldal" },
@@ -45,7 +46,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <HeaderCartButton />
+            {SHOP_ENABLED && <HeaderCartButton />}
 
             <button
               type="button"

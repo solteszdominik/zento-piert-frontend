@@ -3,6 +3,7 @@ import Link from "next/link";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import type { Product } from "@/types/product";
 import { formatPrice } from "@/lib/format";
+import { SHOP_ENABLED } from "@/config/shop";
 
 interface ProductCardProps {
   product: Product;
@@ -44,7 +45,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </p>
 
         <div className="mt-auto flex flex-col gap-3 pt-5">
-          <AddToCartButton product={product} />
+          {SHOP_ENABLED && <AddToCartButton product={product} />}
 
           <Link
             href={`/products/${product.slug}`}

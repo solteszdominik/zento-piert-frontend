@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import { categories } from "@/data/categories";
 import { productService } from "@/services/productService";
+import { SHOP_ENABLED } from "@/config/shop";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -105,11 +106,17 @@ export default async function ProductDetailPage({
               </div>
 
               <div>
-                <div className="w-full sm:w-auto">
-                  <AddToCartButton product={product} />
-                </div>
+                {SHOP_ENABLED && (
+                  <div className="w-full sm:w-auto">
+                    <AddToCartButton product={product} />
+                  </div>
+                )}
 
-                <div className="mt-3 flex items-center gap-2 text-sm font-medium">
+                <div
+                  className={`flex items-center gap-2 text-sm font-medium ${
+                    SHOP_ENABLED ? "mt-3" : ""
+                  }`}
+                >
                   <span
                     className={`h-2.5 w-2.5 shrink-0 rounded-full ${
                       product.isAvailable ? "bg-green-500" : "bg-slate-400"
@@ -121,9 +128,13 @@ export default async function ProductDetailPage({
                       product.isAvailable ? "text-green-700" : "text-slate-500"
                     }
                   >
-                    {product.isAvailable
-                      ? "A termék jelenleg rendelhető"
-                      : "A termék jelenleg nem rendelhető"}
+                    {SHOP_ENABLED
+                      ? product.isAvailable
+                        ? "A termék jelenleg rendelhető"
+                        : "A termék jelenleg nem rendelhető"
+                      : product.isAvailable
+                        ? "A termék jelenleg elérhető"
+                        : "A termék jelenleg nem elérhető"}
                   </span>
                 </div>
               </div>

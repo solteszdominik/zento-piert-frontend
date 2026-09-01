@@ -9,9 +9,28 @@ import Button from "@/components/ui/Button";
 import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import CartList from "@/components/cart/CartList";
+import { SHOP_ENABLED } from "@/config/shop";
 
 export default function CartPage() {
   const items = useCartStore((state) => state.items);
+
+  if (!SHOP_ENABLED) {
+    return (
+      <>
+        <Header />
+
+        <main className="mx-auto min-h-[60vh] max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+          <EmptyState
+            title="Az online rendelés hamarosan elérhető"
+            description="Termékeinket addig is megtekintheted a termékkatalógusban."
+            action={<Button href="/products">Termékek megtekintése</Button>}
+          />
+        </main>
+
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
