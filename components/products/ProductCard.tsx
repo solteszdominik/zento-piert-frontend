@@ -40,9 +40,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           </p>
         )}
 
-        <p className="mt-2 text-lg font-bold text-blue-900">
-          {formatPrice(product.price)} / {product.unit}
-        </p>
+        {SHOP_ENABLED && (
+          <p className="mt-2 text-lg font-bold text-blue-900">
+            {formatPrice(product.price)} / {product.unit}
+          </p>
+        )}
 
         <div className="mt-auto flex flex-col gap-3 pt-5">
           {SHOP_ENABLED && <AddToCartButton product={product} />}

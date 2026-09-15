@@ -144,17 +144,13 @@ export default async function ProductDetailPage({
                 </div>
               )}
 
-              <div className="mb-5 sm:mb-6">
-                <p className="text-xl font-bold text-blue-950 sm:text-2xl">
-                  {product.price.toLocaleString("hu-HU")} Ft / {product.unit}
-                </p>
-
-                {product.packageSize && (
-                  <p className="mt-1 text-sm text-slate-500">
-                    Kiszerelés: {product.packageSize}
+              {SHOP_ENABLED && (
+                <div className="mb-5 sm:mb-6">
+                  <p className="text-xl font-bold text-blue-950 sm:text-2xl">
+                    {product.price.toLocaleString("hu-HU")} Ft / {product.unit}
                   </p>
-                )}
-              </div>
+                </div>
+              )}
 
               <div>
                 {SHOP_ENABLED && (

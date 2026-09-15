@@ -43,7 +43,7 @@ export default function Hero() {
           </div>
 
           <div className="absolute bottom-0 left-3 rounded-2xl bg-blue-950 px-4 py-3 text-white shadow-lg sm:-bottom-6 sm:-left-6 sm:p-5">
-            <p className="text-2xl font-bold sm:text-3xl">7</p>
+            <p className="text-2xl font-bold sm:text-3xl">7+</p>
 
             <p className="text-xs text-blue-100 sm:text-sm">termékkategória</p>
           </div>
