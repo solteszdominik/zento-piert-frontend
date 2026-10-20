@@ -8,7 +8,7 @@ export default function AboutPreview() {
         <div className="rounded-[1.5rem] bg-blue-50 p-3 sm:rounded-[2rem] sm:p-6">
           <Image
             src="/images/zento-bolt-iroda.png"
-            alt="A Zentó-Piért Kft. abaújszántói üzlete"
+            alt="A Zento-Piért Kft. abaújszántói üzlete"
             width={1536}
             height={1024}
             priority
@@ -22,12 +22,12 @@ export default function AboutPreview() {
           </p>
 
           <h2 className="mb-5 text-2xl font-bold tracking-tight text-blue-950 sm:text-3xl md:text-4xl">
-            Az abaújszántói Zentó–Piért Kft. nevében köszöntöm Önt! Az
+            Az abaújszántói Zento–Piért Kft. nevében köszöntöm Önt! Az
             alábbiakban bemutatom társaságunkat.
           </h2>
 
           <p className="mb-5 text-sm leading-7 text-slate-600 sm:text-base">
-            1991–es megalakulásunk óta (Zentó Bt–Soltész Papír Kft) jelentős
+            1991–es megalakulásunk óta (Zento Bt–Soltész Papír Kft) jelentős
             fejlődésen, átalakuláson vagyunk túl, a kezdeti 1 db
             papírzacskógyártó gépet komoly géppark váltotta fel, jelenleg az
             alábbi gépekkel rendelkezünk:

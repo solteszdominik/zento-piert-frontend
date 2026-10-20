@@ -8,7 +8,7 @@ import { productService } from "@/services/productService";
 export const metadata: Metadata = {
   title: "Termékek",
   description:
-    "Papírtermékek, csomagolóanyagok és háztartási termékek a Zentó-Piért Kft. kínálatából.",
+    "Papírtermékek, csomagolóanyagok és háztartási termékek a Zento-Piért Kft. kínálatából.",
   alternates: {
     canonical: "https://zento-piert.hu/products",
   },

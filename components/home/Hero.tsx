@@ -16,7 +16,7 @@ export default function Hero() {
           </h1>
 
           <p className="mb-7 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 md:mb-8">
-            A Zentó–Piért Kft. saját gyártású és gondosan válogatott
+            A Zento–Piért Kft. saját gyártású és gondosan válogatott
             papírtermékekkel, csomagolóanyagokkal és háztartási kiegészítőkkel
             szolgálja ki partnereit országszerte.
           </p>
@@ -34,7 +34,7 @@ export default function Hero() {
           <div className="rounded-[1.5rem] bg-white p-3 shadow-xl shadow-blue-100 sm:rounded-[2rem] sm:p-4">
             <Image
               src="/images/zento-termekek.jpg"
-              alt="A Zentó-Piért Kft. termékei."
+              alt="A Zento-Piért Kft. termékei."
               width={1536}
               height={1024}
               priority

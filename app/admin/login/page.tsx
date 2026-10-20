@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md rounded-xl border p-5 shadow-sm sm:p-8">
         <h1 className="mb-2 text-2xl font-bold">Admin belépés</h1>
 
-        <p className="mb-6 text-sm text-gray-600">Zentó-Piért adminisztráció</p>
+        <p className="mb-6 text-sm text-gray-600">Zento-Piért adminisztráció</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

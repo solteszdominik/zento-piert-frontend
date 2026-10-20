@@ -16,7 +16,7 @@ export default function AdminPage() {
     <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
       <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold sm:text-3xl">Zentó-Piért Admin</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">Zento-Piért Admin</h1>
 
           <p className="mt-1 text-sm text-gray-500">Adminisztrációs felület</p>
         </div>

@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.name}
         </h3>
 
-        <p className="mt-2 text-sm leading-6 text-slate-600">
+        <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">
           {product.description}
         </p>
 

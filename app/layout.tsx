@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://zento-piert.hu"),
 
   title: {
-    default: "Zentó-Piért Kft. | Papírtermékek és csomagolóanyagok",
-    template: "%s | Zentó-Piért Kft.",
+    default: "Zento-Piért Kft. | Papírtermékek és csomagolóanyagok",
+    template: "%s | Zento-Piért Kft.",
   },
   description:
     "Papírtermékek gyártása és forgalmazása több mint 30 év tapasztalatával. Papíráruk, csomagolóanyagok és háztartási termékek Abaújszántóról, országos kiszolgálással.",
   keywords: [
-    "Zentó-Piért",
-    "Zentó-Piért Kft.",
+    "Zento-Piért",
+    "Zento-Piért Kft.",
     "papírtermék",
     "papírtermék gyártás",
     "papíráru",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     "háztartási termékek",
     "Abaújszántó",
   ],
-  authors: [{ name: "Zentó-Piért Kft." }],
-  creator: "Zentó-Piért Kft.",
-  publisher: "Zentó-Piért Kft.",
+  authors: [{ name: "Zento-Piért Kft." }],
+  creator: "Zento-Piért Kft.",
+  publisher: "Zento-Piért Kft.",
   robots: {
     index: true,
     follow: true,
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "hu_HU",
-    siteName: "Zentó-Piért Kft.",
-    title: "Zentó-Piért Kft. | Papírtermékek és csomagolóanyagok",
+    siteName: "Zento-Piért Kft.",
+    title: "Zento-Piért Kft. | Papírtermékek és csomagolóanyagok",
     description:
       "Papírtermékek gyártása és forgalmazása több mint 30 év tapasztalatával, országos kiszolgálással.",
   },

@@ -23,7 +23,7 @@ export interface OrderItem {
   product_id: string;
   product_name: string;
   unit_price: number;
-  unit: "db" | "csomag" | "lap";
+  unit: "db" | "csomag" | "lap" | "tekercs";
   quantity: number;
 }
 

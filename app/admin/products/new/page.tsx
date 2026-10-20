@@ -387,6 +387,7 @@ export default function NewProductPage() {
               <option value="db">db</option>
               <option value="csomag">csomag</option>
               <option value="lap">lap</option>
+              <option value="tekercs">tekercs</option>
             </select>
           </div>
         </div>

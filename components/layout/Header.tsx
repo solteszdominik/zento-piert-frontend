@@ -30,7 +30,7 @@ export default function Header() {
             onClick={closeMenu}
             className="shrink-0 text-lg font-bold text-blue-950 sm:text-xl"
           >
-            Zentó-Piért Kft.
+            Zento-Piért Kft.
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm font-medium text-slate-700 md:flex">

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 sm:py-12 md:grid-cols-4 md:gap-10">
         <div className="md:col-span-2">
           <Link href="/" className="text-xl font-bold text-blue-950">
-            Zentó-Piért Kft.
+            Zento-Piért Kft.
           </Link>
 
           <p className="mt-4 max-w-md text-sm leading-7 text-slate-600 sm:text-base">
@@ -55,7 +55,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-blue-100 px-4 py-5 text-center text-xs text-slate-500 sm:px-6 sm:text-sm">
-        © {new Date().getFullYear()} Zentó-Piért Kft. Minden jog fenntartva.
+        © {new Date().getFullYear()} Zento-Piért Kft. Minden jog fenntartva.
       </div>
     </footer>
   );

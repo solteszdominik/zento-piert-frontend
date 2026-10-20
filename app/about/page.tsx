@@ -6,7 +6,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Rólunk",
   description:
-    "Ismerje meg az abaújszántói Zentó-Piért Kft. történetét, gyártási kapacitását, gépparkját és üzleti partnereit.",
+    "Ismerje meg az abaújszántói Zento-Piért Kft. történetét, gyártási kapacitását, gépparkját és üzleti partnereit.",
   alternates: {
     canonical: "https://zento-piert.hu/about",
   },
@@ -41,34 +41,29 @@ const capacities = [
 ];
 
 const suppliers = [
-  "Drenik Kft. papírgyára (Szolnok)",
-  "Gran Papír Kft.",
-  "ERFO Kft. Mohács",
-  "Huchtemeier Papier (DE)",
-  "Harmaneci papírgyár (SK)",
-  "Convertis SRO (SK)",
-  "Symetal (GR)",
   "Vajda Papír Kft.",
   "Alt és Társa Bt.",
-  "Rollbox Trade Kft.",
-  "Sydnex Kft.",
-  "Pátria Nyomda Zrt.",
+  "D-Plus Distribution Kft.",
+  "GLORY HOME Kft.",
+  "Kelet Higiénia Kft.",
+  "dr-PLAST Engineering Zrt.",
+  "Convertis SRO (SK)",
+  "Hungaroprint Kft.",
+  "Vass János Viktor",
+  "L-Go Logistic Kft.",
 ];
 
 const customers = [
-  "Kerekes Kft. – PRIVÁT Üzletlánc",
-  "REÁL Hungária Kft.",
-  "KeletAlfi Ker. Kft.",
-  "Szolnok Coop Zrt.",
-  "Mecsek Füszért Zrt.",
-  "Észak–Kelet Pro Coop Zrt.",
-  "Enger Kft.",
-  "Abaúj Coop Zrt. (Encs)",
-  "Pille Kft.",
-  "PDP Trade '99 Kft.",
+  "Kerekes Száll.és Ker. Kft.",
+  "Kispatak 2000 Ker. Kft.",
+  "D-Plus Distribution Kft.",
+  "Vajda-Papír Kft.",
+  "Észek-Kelet Pro-Coop Zrt.",
+  "Enger-Impex Kft.",
+  "Fortex Invest Hungary Kft.",
+  "Black Point Ker. és Szolg. Kft.",
+  "Sydnex Kft.",
   "Zöld Plasztik Lakics Kft.",
-  "Eurogastro Kereskedelmi Zrt.",
-  "AD VESZ Kft. (Miskolc)",
 ];
 
 export default function Page() {
@@ -84,12 +79,12 @@ export default function Page() {
             </p>
 
             <h1 className="text-3xl font-bold text-blue-950 md:text-5xl">
-              Az abaújszántói Zentó–Piért Kft.
+              Az abaújszántói Zento–Piért Kft.
             </h1>
 
             <div className="mt-8 space-y-5 leading-7 text-slate-600">
               <p>
-                Az abaújszántói Zentó–Piért Kft. nevében köszöntöm Önt! Az
+                Az abaújszántói Zento–Piért Kft. nevében köszöntöm Önt! Az
                 alábbiakban bemutatom társaságunkat.
               </p>
 
@@ -111,7 +106,7 @@ export default function Page() {
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg">
             <Image
               src="/images/zento-bolt-iroda.png"
-              alt="A Zentó-Piért Kft. abaújszántói üzlete"
+              alt="A Zento-Piért Kft. abaújszántói üzlete"
               width={1536}
               height={1024}
               priority

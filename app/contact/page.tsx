@@ -5,7 +5,7 @@ import Header from "@/components/layout/Header";
 export const metadata: Metadata = {
   title: "Kapcsolat",
   description:
-    "Lépjen kapcsolatba a Zentó-Piért Kft.-vel. Elérhetőségek, cím, telefonszám és kapcsolatfelvételi lehetőség.",
+    "Lépjen kapcsolatba a Zento-Piért Kft.-vel. Elérhetőségek, cím, telefonszám és kapcsolatfelvételi lehetőség.",
   alternates: {
     canonical: "https://zento-piert.hu/contact",
   },
@@ -87,7 +87,7 @@ export default function Page() {
 
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
               <iframe
-                title="Zentó-Piért Kft. térkép"
+                title="Zento-Piért Kft. térkép"
                 src="https://www.google.com/maps?q=3881%20Aba%C3%BAjsz%C3%A1nt%C3%B3%2C%20B%C3%A9ke%20%C3%BAt%2018&output=embed"
                 className="h-64 w-full border-0 sm:h-80"
                 loading="lazy"

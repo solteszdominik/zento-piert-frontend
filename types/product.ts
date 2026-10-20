@@ -21,7 +21,7 @@ export interface Product {
   imageUrl: string;
   isFeatured?: boolean;
   isAvailable?: boolean;
-  unit: "db" | "csomag" | "lap";
+  unit: "db" | "csomag" | "lap" | "tekercs";
   packageSize?: string;
   brand?: string;
   productLine?: string;

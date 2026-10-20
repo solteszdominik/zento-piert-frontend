@@ -28,7 +28,7 @@ export async function generateMetadata({
 
     const description =
       product.description ||
-      `${product.name} – termékinformációk a Zentó-Piért Kft. kínálatából.`;
+      `${product.name} – termékinformációk a Zento-Piért Kft. kínálatából.`;
 
     return {
       title: product.name,
@@ -42,7 +42,7 @@ export async function generateMetadata({
         title: product.name,
         description,
         url: `${BASE_URL}/products/${product.slug}`,
-        siteName: "Zentó-Piért Kft.",
+        siteName: "Zento-Piért Kft.",
         images: product.imageUrl
           ? [
               {

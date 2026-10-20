@@ -7,7 +7,7 @@ import { tenders } from "@/data/tenders";
 
 export const metadata: Metadata = {
   title: "Pályázatok",
-  description: "A Zentó-Piért Kft. megnyert pályázatai és fejlesztései.",
+  description: "A Zento-Piért Kft. megnyert pályázatai és fejlesztései.",
   alternates: {
     canonical: "https://zento-piert.hu/tenders",
   },
