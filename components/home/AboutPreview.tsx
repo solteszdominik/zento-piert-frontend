@@ -22,28 +22,34 @@ export default function AboutPreview() {
           </p>
 
           <h2 className="mb-5 text-2xl font-bold tracking-tight text-blue-950 sm:text-3xl md:text-4xl">
-            Az abaújszántói Zento–Piért Kft. nevében köszöntöm Önt! Az
-            alábbiakban bemutatom társaságunkat.
+            Szeretettel köszöntöm Önt az abaújszántói Zento–Piért Kft. oldalán!
+            Engedje meg, hogy röviden bemutassam vállalkozásunkat.
           </h2>
 
           <p className="mb-5 text-sm leading-7 text-slate-600 sm:text-base">
-            1991–es megalakulásunk óta (Zento Bt–Soltész Papír Kft) jelentős
-            fejlődésen, átalakuláson vagyunk túl, a kezdeti 1 db
-            papírzacskógyártó gépet komoly géppark váltotta fel, jelenleg az
-            alábbi gépekkel rendelkezünk:
+            Történetünk 1991-ben indult (Zento Bt.–Soltész Papír Kft. néven),
+            egyetlen papírzacskógyártó géppel. Az elmúlt évtizedek folyamatos
+            fejlesztéseinek köszönhetően mára egy modern, komoly kapacitású
+            gépparkkal büszkélkedhetünk, amellyel stabilan és magas minőségben
+            szolgáljuk ki a piacot.
           </p>
 
           <p className="mb-7 text-sm leading-7 text-slate-600 sm:mb-8 sm:text-base">
-            Több mint 3000 3000 m² saját tulajdonú üzem, raktár, iroda
-            biztosítja a zavartalan működést.
+            <b>Biztos háttér:</b> Egy több mint 3000 m²-es, saját tulajdonú
+            üzem, raktár és iroda biztosítja a gördülékeny és zavartalan
+            gyártást.
             <br />
-            20 féle saját gyártású termékkel rendelkezünk, 20 fő munkatárssal
-            látjuk el feladatainkat, ezen kívül 2 rehabilitációs céggel vagyunk
-            kapcsolatban, ahol 20-30 fő csökkent munkaképességű embernek
-            folyamatosan csomagolási munkát biztosítunk.
+            <b>Széles választék:</b> 20-féle saját gyártású termékkel állunk
+            partnereink rendelkezésére.
             <br />
-            Szállításainkat saját, illetve bérelt teherautókkal, kamionokkal
-            látjuk el.
+            <b>Profi csapat és felelősségvállalás:</b> 20 fő saját
+            munkavállalónk mellett két rehabilitációs céggel is együttműködünk,
+            így folyamatos munkát biztosítunk 20-30 fő megváltozott
+            munkaképességű embernek.
+            <br />
+            <b>Rugalmas logisztika:</b> A rendeléseket saját és bérelt
+            teherautóinkkal, kamionjainkkal pontosan és biztonságosan
+            szállítjuk.
           </p>
 
           <Link

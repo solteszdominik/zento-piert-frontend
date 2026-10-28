@@ -16,9 +16,11 @@ export default function Hero() {
           </h1>
 
           <p className="mb-7 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 md:mb-8">
-            A Zento–Piért Kft. saját gyártású és gondosan válogatott
-            papírtermékekkel, csomagolóanyagokkal és háztartási kiegészítőkkel
-            szolgálja ki partnereit országszerte.
+            Már több mint három évtizede készítünk saját gyártású és gondosan
+            válogatott papírtermékeket, praktikus csomagolóanyagokat, valamint
+            háztartási kiegészítőket. Célunk, hogy megbízható termékeinkkel és
+            személyes odafigyeléssel tegyük könnyebbé meglévő és leendő
+            partnereink mindennapjait az ország egész területén.
           </p>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">

@@ -136,11 +136,31 @@ export default async function ProductDetailPage({
                     </span>
                   )}
 
-                  {product.packageSize && (
-                    <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800 sm:text-sm">
-                      Kiszerelés: {product.packageSize}
-                    </span>
-                  )}
+                  {product.packageSize &&
+                    (() => {
+                      const sizes = product.packageSize
+                        .split(/\s+-\s+/)
+                        .map((size) => size.trim())
+                        .filter(Boolean);
+
+                      return (
+                        <div className="w-full rounded-2xl bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-800">
+                          {sizes.length > 1 ? (
+                            <>
+                              <p className="mb-2">Kiszerelések:</p>
+
+                              <ul className="list-disc space-y-1 pl-5">
+                                {sizes.map((size, index) => (
+                                  <li key={index}>{size}</li>
+                                ))}
+                              </ul>
+                            </>
+                          ) : (
+                            <p>Kiszerelés: {product.packageSize}</p>
+                          )}
+                        </div>
+                      );
+                    })()}
                 </div>
               )}
 

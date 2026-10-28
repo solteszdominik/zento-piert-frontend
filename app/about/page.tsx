@@ -13,30 +13,32 @@ export const metadata: Metadata = {
 };
 
 const machines = [
-  "2 db automata papírzsebkendő gép",
-  "2 db automata papírzacskógép",
-  "1 db automata kéztörlő gép",
-  "2 db automata szalvéta gép nyomdával",
-  "1 db új nagy teljesítményű alufólia kicsévélő gépsor csomagolóval",
-  "1 db automata alufólia–folpack gyártó gép",
-  "1 db automata sütőpapírgyártó gép",
-  "1 db automata csomagológép tekercses termékek csomagolására",
-  "2 db félautomata folpack gyártó gép",
-  "3 db Mitsubishi targonca",
-  "1 db ívre vágó gép",
-  "1 db síkvágó gép",
+  "2 automata papírzsebkendő gép",
+  "2 automata papírzacskógép",
+  "1 automata kéztörlő gép",
+  "2 automata szalvéta gép nyomdával",
+  "1 új nagy teljesítményű alufólia kicsévélő gépsor csomagolóval",
+  "1 automata alufólia - tekercselőgép",
+  "1 automata sütőpapír tekercselő gép ",
+  "1 automata csomagológép tekercses termékek csomagolására",
+  "2 félautomata folpack gyártó gép",
+  "3 Mitsubishi targonca",
+  "1 síkvágó gép",
 ];
 
 const capacities = [
-  { product: "Papír zsebkendő 100", capacity: "1.200.000 csg." },
-  { product: "Papír zsebkendő 10", capacity: "1.000.000 csg." },
+  { product: "Papírzsebkendő (100 lapos)", capacity: "1.200.000 csg." },
+  { product: "Papírzsebkendő (10 lapos)", capacity: "1.000.000 csg." },
   { product: "Folpack", capacity: "150.000 tek." },
-  { product: "Alufólia 10 fm-re átszámolva", capacity: "200.000 tek." },
-  { product: "Szalvéta 28×28, 32×32", capacity: "100.000 csg." },
-  { product: "Befőzési gumigyűrű, celofán", capacity: "korlátlan" },
-  { product: "Sütőpapír 8, 15, 20 fm", capacity: "260.000 tek." },
+  {
+    product: "Alufólia 10 fm-es tekercsre átszámolva",
+    capacity: "200.000 tek.",
+  },
+  { product: "Szalvéta (28×28 cm)", capacity: "100.000 csg." },
+  { product: "Befőzési gumigyűrű, befőzési fólia", capacity: "korlátlan" },
+  { product: "Sütőpapír ( 8 fm, 15 fm)", capacity: "260.000 tek." },
   { product: "Grillzacskó", capacity: "100.000 csg." },
-  { product: "Lady 5 íves zsírpapír", capacity: "200.000 csg." },
+  { product: "Lady zsírpapír (5 íves)", capacity: "200.000 csg." },
   { product: "Papírzacskók", capacity: "4.000.000 db" },
 ];
 
@@ -84,11 +86,6 @@ export default function Page() {
 
             <div className="mt-8 space-y-5 leading-7 text-slate-600">
               <p>
-                Az abaújszántói Zento–Piért Kft. nevében köszöntöm Önt! Az
-                alábbiakban bemutatom társaságunkat.
-              </p>
-
-              <p>
                 Székhelyünk és telephelyünk:{" "}
                 <strong className="text-slate-800">
                   3881 Abaújszántó, Béke út 18.
@@ -130,27 +127,6 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="mt-12 max-w-4xl">
-          <div className="space-y-5 leading-7 text-slate-600">
-            <p>
-              Több mint 3000 m² saját tulajdonú üzem, raktár és iroda biztosítja
-              a zavartalan működést.
-            </p>
-
-            <p>
-              20 féle saját gyártású termékkel rendelkezünk, 20 fő munkatárssal
-              látjuk el feladatainkat. Ezen kívül 2 rehabilitációs céggel
-              vagyunk kapcsolatban, ahol 20–30 fő csökkent munkaképességű
-              embernek biztosítunk folyamatos csomagolási munkát.
-            </p>
-
-            <p>
-              Szállításainkat saját, illetve bérelt teherautókkal és kamionokkal
-              látjuk el.
-            </p>
-          </div>
-        </section>
-
         <section className="mt-12 max-w-5xl">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-blue-950">
@@ -175,19 +151,7 @@ export default function Page() {
               </div>
             ))}
           </div>
-          <section className="mt-16 max-w-5xl">
-            <h2 className="text-2xl font-bold text-blue-950">
-              Minőségirányítás
-            </h2>
 
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <p className="leading-7 text-slate-700">
-                2001 óta <strong>ISO 9001:2008</strong> minőségirányítási
-                tanúsítvánnyal rendelkezünk, amelyet minden évben sikeres audit
-                keretében megújítunk.
-              </p>
-            </div>
-          </section>
           <section className="mt-16 max-w-6xl">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-blue-950">

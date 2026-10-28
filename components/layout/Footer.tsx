@@ -8,12 +8,6 @@ export default function Footer() {
           <Link href="/" className="text-xl font-bold text-blue-950">
             Zento-Piért Kft.
           </Link>
-
-          <p className="mt-4 max-w-md text-sm leading-7 text-slate-600 sm:text-base">
-            Papírtermékek gyártása és forgalmazása több mint három évtizedes
-            szakmai tapasztalattal, lakossági, viszonteladói és céges
-            partnereink számára.
-          </p>
         </div>
 
         <div>

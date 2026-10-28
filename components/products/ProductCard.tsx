@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100 sm:rounded-3xl sm:p-5">
+    <article className="group flex flex-col rounded-2xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100 sm:rounded-3xl sm:p-5">
       <Link
         href={`/products/${product.slug}`}
         className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-slate-50 sm:mb-5 sm:rounded-2xl"
@@ -34,11 +34,40 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
 
-        {product.packageSize && (
-          <p className="mt-3 text-sm font-semibold text-slate-500">
-            Kiszerelés: {product.packageSize}
-          </p>
-        )}
+        {product.packageSize &&
+          (() => {
+            const sizes = product.packageSize
+              .split(/\s+-\s+/)
+              .map((size) => size.trim())
+              .filter(Boolean);
+
+            const visibleSizes = sizes.slice(0, 2);
+            const remainingCount = sizes.length - visibleSizes.length;
+
+            return (
+              <div className="mt-3 text-sm font-semibold text-slate-500">
+                {sizes.length > 1 ? (
+                  <>
+                    <p className="mb-1">Kiszerelések:</p>
+
+                    <ul className="list-inside list-disc space-y-1">
+                      {visibleSizes.map((size, index) => (
+                        <li key={index}>{size}</li>
+                      ))}
+                    </ul>
+
+                    {remainingCount > 0 && (
+                      <p className="mt-1 text-xs font-medium text-blue-700">
+                        + további {remainingCount} kiszerelés
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p>Kiszerelés: {product.packageSize}</p>
+                )}
+              </div>
+            );
+          })()}
 
         {SHOP_ENABLED && (
           <p className="mt-2 text-lg font-bold text-blue-900">
