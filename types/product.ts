@@ -9,7 +9,10 @@ export type ProductCategory =
   | "laundry-care"
   | "dishwashing"
   | "surface-cleaners"
-  | "toilet-cleaners";
+  | "toilet-cleaners"
+  | "other"
+  | "wrapper"
+  | "horeca";
 
 export interface Product {
   id: string;

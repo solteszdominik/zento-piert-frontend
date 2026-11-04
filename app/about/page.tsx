@@ -27,19 +27,19 @@ const machines = [
 ];
 
 const capacities = [
-  { product: "Papírzsebkendő (100 lapos)", capacity: "1.200.000 csg." },
-  { product: "Papírzsebkendő (10 lapos)", capacity: "1.000.000 csg." },
-  { product: "Folpack", capacity: "150.000 tek." },
+  { product: "Papírzsebkendő (100 lapos)", capacity: "1.200.000 csomag" },
+  { product: "Papírzsebkendő (10 lapos)", capacity: "1.000.000 csomag" },
+  { product: "Folpack", capacity: "150.000 tekercs" },
   {
     product: "Alufólia 10 fm-es tekercsre átszámolva",
-    capacity: "200.000 tek.",
+    capacity: "200.000 tekercs",
   },
-  { product: "Szalvéta (28×28 cm)", capacity: "100.000 csg." },
+  { product: "Szalvéta (28×28 cm)", capacity: "100.000 csomag" },
   { product: "Befőzési gumigyűrű, befőzési fólia", capacity: "korlátlan" },
-  { product: "Sütőpapír ( 8 fm, 15 fm)", capacity: "260.000 tek." },
-  { product: "Grillzacskó", capacity: "100.000 csg." },
-  { product: "Lady zsírpapír (5 íves)", capacity: "200.000 csg." },
-  { product: "Papírzacskók", capacity: "4.000.000 db" },
+  { product: "Sütőpapír ( 8 fm, 15 fm)", capacity: "260.000 tekercs" },
+  { product: "Grillzacskó", capacity: "100.000 csomag" },
+  { product: "Lady zsírpapír (5 íves)", capacity: "200.000 csomag" },
+  { product: "Papírzacskók", capacity: "4.000.000 darab" },
 ];
 
 const suppliers = [

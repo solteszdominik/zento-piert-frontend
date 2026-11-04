@@ -20,33 +20,33 @@ const sanoShowcaseItems: ShowcaseItem[] = [
     title: "Maxima mosóparfümök",
     description:
       "Válogatott Sano Maxima illatok a hosszan tartó frissességért.",
-    fileName: "maxima-trio.jpeg",
+    fileName: "maxima-trio.png",
   },
   {
     title: "Maxima Duo",
     description: "Népszerű Maxima termékek páros összeállításban.",
-    fileName: "maxima-bioduo.jpeg",
+    fileName: "maxima-bioduo.png",
   },
   {
     title: "Sano mosogatás",
     description: "Hatékony megoldások a mindennapi mosogatáshoz.",
-    fileName: "dishwash-trio.jpeg",
+    fileName: "dishwash-trio.png",
   },
   {
     title: "Sano felülettisztítás",
     description: "Praktikus tisztítószerek az otthon különböző felületeire.",
-    fileName: "surf-trio.jpeg",
+    fileName: "surf-trio.png",
   },
   {
     title: "Sano toalett tisztítás",
     description:
       "Komplett választék a fürdőszoba és a toalett tisztán tartásához.",
-    fileName: "toilet-quad.jpeg",
+    fileName: "toilet-quad.png",
   },
   {
     title: "Sano Oxygen",
     description: "Sano Oxygen termékek a makacs szennyeződések kezeléséhez.",
-    fileName: "oxygen-duo.jpeg",
+    fileName: "oxygen-duo.png",
   },
 ];
 

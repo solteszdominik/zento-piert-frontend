@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import ProductImageLightbox from "@/components/products/ProductImageLightbox";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -86,16 +86,7 @@ export default async function ProductDetailPage({
         <section className="bg-gradient-to-br from-blue-50 via-white to-sky-100">
           <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 md:items-center md:gap-12 md:py-20">
             <div className="rounded-[1.5rem] bg-white p-3 shadow-xl shadow-blue-100 sm:rounded-[2rem] sm:p-5">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-slate-50 sm:rounded-[1.5rem]">
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  fill
-                  priority
-                  className="object-contain p-4 sm:p-6"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+              <ProductImageLightbox src={product.imageUrl} alt={product.name} />
             </div>
 
             <div>

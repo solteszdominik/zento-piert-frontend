@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import ProductFilters from "@/components/products/ProductFilter";
 import ProductGrid from "@/components/products/ProductGrid";
 import { productService } from "@/services/productService";
+import BackToTop from "@/components/products/BackToTop";
 
 export const metadata: Metadata = {
   title: "Termékek",
@@ -94,7 +95,7 @@ export default async function ProductsPage({
           )}
         </section>
       </main>
-
+      <BackToTop />
       <Footer />
     </>
   );

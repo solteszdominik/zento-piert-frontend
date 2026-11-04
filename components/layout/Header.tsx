@@ -28,7 +28,7 @@ export default function Header() {
           <Link
             href="/"
             onClick={closeMenu}
-            className="shrink-0 text-lg font-bold text-blue-950 sm:text-xl"
+            className="shrink-0 text-lg font-bold text-blue-950 sm:text-2xl lg:text-3xl"
           >
             Zento-Piért Kft.
           </Link>

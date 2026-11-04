@@ -44,4 +44,39 @@ export const categories: Category[] = [
     name: "Folpack",
     description: "Frissen tartáshoz és csomagoláshoz.",
   },
+  {
+    id: "other",
+    name: "Egyéb",
+    description: "Egyéb termékek.",
+  },
+  {
+    id: "wrapper",
+    name: "Csomagolóanyagok",
+    description: "Különböző típusú csomagolóanyagok.",
+  },
+  {
+    id: "horeca",
+    name: "HORECA",
+    description: "Horeca ipari termékek.",
+  },
+  {
+    id: "laundry-care",
+    name: "Mosás és öblítés",
+    description: "Mosószerek, öblítők és ruhápolási termékek.",
+  },
+  {
+    id: "dishwashing",
+    name: "Mosogatás",
+    description: "Kézi és gépi mosogatáshoz készült termékek.",
+  },
+  {
+    id: "surface-cleaners",
+    name: "Felülettisztítás",
+    description: "Tisztítószerek különböző háztartási felületekhez.",
+  },
+  {
+    id: "toilet-cleaners",
+    name: "WC-tisztítás",
+    description: "WC-tisztító és higiéniai termékek.",
+  },
 ];

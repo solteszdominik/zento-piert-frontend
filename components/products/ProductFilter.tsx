@@ -4,12 +4,25 @@ import { categories } from "@/data/categories";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
+const sanoCategoryIds = [
+  "laundry-care",
+  "dishwashing",
+  "surface-cleaners",
+  "toilet-cleaners",
+];
+
 export default function ProductFilters() {
   const searchParams = useSearchParams();
 
   const selectedCategory = searchParams.get("category");
   const selectedBrand = searchParams.get("brand");
   const search = searchParams.get("search") ?? "";
+
+  const isSanoSelected = selectedBrand?.toLowerCase() === "sano";
+
+  const visibleCategories = isSanoSelected
+    ? categories.filter((category) => sanoCategoryIds.includes(category.id))
+    : categories;
 
   const buildHref = ({
     category,
@@ -63,7 +76,7 @@ export default function ProductFilters() {
         <div className="flex flex-wrap gap-3">
           <Link
             href={buildHref({
-              category: selectedCategory,
+              category: null,
               brand: null,
             })}
             className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
@@ -77,7 +90,7 @@ export default function ProductFilters() {
 
           <Link
             href={buildHref({
-              category: selectedCategory,
+              category: null,
               brand: "Sano",
             })}
             className={`rounded-full px-3.5 py-2 text-xs sm:px-5 sm:text-sm font-semibold transition ${
@@ -109,7 +122,7 @@ export default function ProductFilters() {
             Összes
           </Link>
 
-          {categories.map((category) => {
+          {visibleCategories.map((category) => {
             const isActive = selectedCategory === category.id;
 
             return (
