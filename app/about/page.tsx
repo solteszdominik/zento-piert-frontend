@@ -13,17 +13,15 @@ export const metadata: Metadata = {
 };
 
 const machines = [
-  "2 automata papírzsebkendő gép",
+  "3 automata papírzsebkendő gép",
   "2 automata papírzacskógép",
-  "1 automata kéztörlő gép",
   "2 automata szalvéta gép nyomdával",
   "1 új nagy teljesítményű alufólia kicsévélő gépsor csomagolóval",
   "1 automata alufólia - tekercselőgép",
   "1 automata sütőpapír tekercselő gép ",
   "1 automata csomagológép tekercses termékek csomagolására",
-  "2 félautomata folpack gyártó gép",
+  "1 félautomata folpack gyártó gép",
   "3 Mitsubishi targonca",
-  "1 síkvágó gép",
 ];
 
 const capacities = [
@@ -53,6 +51,7 @@ const suppliers = [
   "Hungaroprint Kft.",
   "Vass János Viktor",
   "L-Go Logistic Kft.",
+  "Drenik Kft. Szolnok",
 ];
 
 const customers = [

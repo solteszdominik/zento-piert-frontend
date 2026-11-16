@@ -19,4 +19,14 @@ export const tenders: Tender[] = [
     description: "Köszönjük a Magyar Állam és az Európai Unió támogatását.",
     logo: "/images/tenders/Projekttabla2.jpg",
   },
+  {
+    id: "ginop-telephelyfejlesztes",
+    title: "Telephely- és kapacitásfejlesztés a ZENTO-PIÉRT Kft-nél",
+    company: "ZENTO-PIÉRT KFT",
+    amount: "13.028.082 Ft",
+    amountLabel: "Szerződött támogatás összege:",
+    description:
+      "A projekt keretében az abaújszántói telephely raktárhelyiségeinek korszerűsítése, új eszközök beszerzése és képzés megvalósítása történt. Támogatás mértéke: 100%. Projektazonosító: GINOP-1.2.9-20-2021-00006.",
+    logo: "/images/tenders/Széchenyi_2020_támogatási_projektinfografika.png",
+  },
 ];

@@ -59,7 +59,7 @@ export default function Page() {
 
                   <div className="mb-5 rounded-xl bg-blue-50 p-4 sm:rounded-2xl">
                     <p className="text-sm text-slate-600">
-                      Visszatérítendő hitel összege:
+                      {tender.amountLabel ?? "Visszatérítendő hitel összege:"}
                     </p>
 
                     <p className="mt-1 text-xl font-bold text-blue-700 sm:text-2xl">
