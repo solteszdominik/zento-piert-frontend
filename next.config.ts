@@ -10,6 +10,7 @@ const supabaseHostname = new URL(supabaseUrl).hostname;
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
