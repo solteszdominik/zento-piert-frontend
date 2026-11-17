@@ -27,6 +27,6 @@ export const tenders: Tender[] = [
     amountLabel: "Szerződött támogatás összege:",
     description:
       "A projekt keretében az abaújszántói telephely raktárhelyiségeinek korszerűsítése, új eszközök beszerzése és képzés megvalósítása történt. Támogatás mértéke: 100%. Projektazonosító: GINOP-1.2.9-20-2021-00006.",
-    logo: "/images/tenders/Szechenyi_2020_tamogatási_projektinfografika.png",
+    logo: "/images/tenders/szechenyi_2020_tamogatasi_projektinfografika.png",
   },
 ];
