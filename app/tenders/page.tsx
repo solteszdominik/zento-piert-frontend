@@ -43,6 +43,7 @@ export default function Page() {
                         src={tender.logo}
                         alt={`${tender.company} pályázat`}
                         fill
+                        unoptimized
                         className="object-contain p-3 sm:p-4"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
