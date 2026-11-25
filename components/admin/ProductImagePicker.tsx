@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import {
   PRODUCT_IMAGE_FOLDERS,
@@ -15,7 +15,7 @@ interface ProductImagePickerProps {
   onChange: (imageUrl: string) => void;
 }
 
-type ImageFilter = "all" | ProductImageFolder;
+const PAGE_SIZE = 12;
 
 export default function ProductImagePicker({
   value,
@@ -26,45 +26,77 @@ export default function ProductImagePicker({
   const [selectedFolder, setSelectedFolder] =
     useState<ProductImageFolder>("6-egyebek");
 
-  const [filter, setFilter] = useState<ImageFilter>("all");
-
-  const [search, setSearch] = useState("");
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
-  const loadImages = async () => {
-    try {
-      setError(null);
-      setIsLoading(true);
+  // Megakadályozza, hogy egy régebbi kérés felülírja
+  // az időközben kiválasztott másik mappa képeit.
+  const requestRef = useRef(0);
 
-      const data = await productImageService.getImages();
+  const loadFolderImages = async (folder: ProductImageFolder) => {
+    const requestId = ++requestRef.current;
+
+    setIsLoading(true);
+    setError(null);
+    setImages([]);
+
+    try {
+      const data = await productImageService.getImagesByFolder(folder);
+
+      if (requestId !== requestRef.current) return;
 
       setImages(data);
     } catch (error) {
+      if (requestId !== requestRef.current) return;
+
       setError(
         error instanceof Error
           ? error.message
           : "Nem sikerült betölteni a képeket.",
       );
     } finally {
-      setIsLoading(false);
+      if (requestId === requestRef.current) {
+        setIsLoading(false);
+      }
     }
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadImages();
-  }, []);
+  const handleGalleryToggle = () => {
+    if (isGalleryOpen) {
+      requestRef.current += 1;
+      setIsGalleryOpen(false);
+      setImages([]);
+      setIsLoading(false);
+      setError(null);
+      return;
+    }
+
+    setIsGalleryOpen(true);
+    setPage(1);
+    setSearch("");
+
+    void loadFolderImages(selectedFolder);
+  };
+
+  const handleFolderChange = (folder: ProductImageFolder) => {
+    setSelectedFolder(folder);
+    setPage(1);
+    setSearch("");
+
+    if (isGalleryOpen) {
+      void loadFolderImages(folder);
+    }
+  };
 
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
     try {
       setError(null);
@@ -77,7 +109,14 @@ export default function ProductImagePicker({
 
       onChange(imageUrl);
 
-      await loadImages();
+      // Az új kép már ki van választva.
+      // Nem kell emiatt újra lekérni a teljes képtárat.
+      requestRef.current += 1;
+      setIsGalleryOpen(false);
+      setImages([]);
+      setIsLoading(false);
+      setSearch("");
+      setPage(1);
     } catch (error) {
       setError(
         error instanceof Error
@@ -93,24 +132,26 @@ export default function ProductImagePicker({
   const filteredImages = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
 
-    return images.filter((image) => {
-      if (filter !== "all" && image.folder !== filter) {
-        return false;
-      }
+    if (!normalizedSearch) return images;
 
-      if (
-        normalizedSearch &&
-        !image.name.toLowerCase().includes(normalizedSearch)
-      ) {
-        return false;
-      }
+    return images.filter((image) =>
+      image.name.toLowerCase().includes(normalizedSearch),
+    );
+  }, [images, search]);
 
-      return true;
-    });
-  }, [images, filter, search]);
+  const totalPages = Math.max(1, Math.ceil(filteredImages.length / PAGE_SIZE));
+
+  const currentPage = Math.min(page, totalPages);
+
+  const visibleImages = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+
+    return filteredImages.slice(start, start + PAGE_SIZE);
+  }, [filteredImages, currentPage]);
 
   return (
     <div className="space-y-6">
+      {/* ÚJ KÉP FELTÖLTÉSE */}
       <div className="rounded-xl border bg-gray-50 p-3 sm:p-4">
         <h3 className="mb-4 text-sm font-semibold">Új kép feltöltése</h3>
 
@@ -125,8 +166,9 @@ export default function ProductImagePicker({
           <select
             id="imageFolder"
             value={selectedFolder}
+            disabled={isUploading}
             onChange={(event) =>
-              setSelectedFolder(event.target.value as ProductImageFolder)
+              handleFolderChange(event.target.value as ProductImageFolder)
             }
             className="w-full rounded-md border bg-white px-3 py-2"
           >
@@ -147,135 +189,174 @@ export default function ProductImagePicker({
         />
 
         <p className="mt-2 text-xs text-gray-500">
-          JPG, PNG vagy WEBP. Maximum 5 MB.
+          JPG, PNG vagy WebP, legfeljebb 20 MB. Feltöltés előtt automatikusan
+          WebP-re optimalizáljuk.
         </p>
 
         {isUploading && (
           <p className="mt-3 text-sm font-medium text-blue-700">
-            Kép feltöltése...
+            Kép optimalizálása és feltöltése...
           </p>
         )}
       </div>
 
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+        >
           {error}
         </div>
       )}
 
-      <div>
-        <div className="mb-4">
-          <h3 className="text-sm font-semibold">Meglévő kép kiválasztása</h3>
+      {/* MEGLÉVŐ KÉPEK */}
+      <div className="rounded-xl border p-3 sm:p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 className="text-sm font-semibold">Meglévő kép kiválasztása</h3>
 
-          {!isLoading && (
             <p className="mt-1 text-xs text-gray-500">
-              {images.length} feltöltött termékkép
-            </p>
-          )}
-        </div>
-
-        <div className="mb-4 flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => setFilter("all")}
-            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-              filter === "all"
-                ? "bg-blue-700 text-white"
-                : "border bg-white text-gray-700 hover:border-blue-300"
-            }`}
-          >
-            Összes
-          </button>
-
-          {PRODUCT_IMAGE_FOLDERS.map((folder) => (
-            <button
-              key={folder.value}
-              type="button"
-              onClick={() => setFilter(folder.value)}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                filter === folder.value
-                  ? "bg-blue-700 text-white"
-                  : "border bg-white text-gray-700 hover:border-blue-300"
-              }`}
-            >
-              {folder.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="mb-4">
-          <input
-            type="search"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder="Keresés fájlnév alapján..."
-            className="w-full rounded-md border px-3 py-2 text-sm"
-          />
-        </div>
-
-        {isLoading ? (
-          <p className="text-sm text-gray-500">Képek betöltése...</p>
-        ) : filteredImages.length === 0 ? (
-          <div className="rounded-lg border border-dashed p-5 text-center">
-            <p className="text-sm text-gray-500">
-              Nincs a szűrésnek megfelelő kép.
+              A képek csak a képtár megnyitásakor töltődnek be.
             </p>
           </div>
-        ) : (
-          <div className="grid max-h-[550px] grid-cols-2 gap-3 overflow-y-auto rounded-xl border bg-gray-50 p-3 sm:grid-cols-3 md:grid-cols-4">
-            {filteredImages.map((image) => {
-              const isSelected = value === image.publicUrl;
 
-              return (
-                <button
-                  key={image.path}
-                  type="button"
-                  onClick={() => onChange(image.publicUrl)}
-                  className={`group overflow-hidden rounded-lg border bg-white text-left transition ${
-                    isSelected
-                      ? "border-blue-600 ring-2 ring-blue-200"
-                      : "border-gray-200 hover:border-blue-300"
-                  }`}
-                >
-                  <div className="relative aspect-square">
-                    <Image
-                      src={image.publicUrl}
-                      alt={image.name}
-                      fill
-                      className="object-contain p-2"
-                      sizes="160px"
-                    />
-                  </div>
+          <button
+            type="button"
+            onClick={handleGalleryToggle}
+            disabled={isUploading}
+            aria-expanded={isGalleryOpen}
+            className="rounded-lg bg-blue-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-800 disabled:opacity-50"
+          >
+            {isGalleryOpen ? "Képtár bezárása" : "Képtár megnyitása"}
+          </button>
+        </div>
 
-                  <div className="border-t px-2 py-2">
-                    <p
-                      className="truncate text-xs text-gray-700"
-                      title={image.name}
+        {isGalleryOpen && (
+          <div className="mt-5 space-y-4 border-t pt-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-sm font-medium text-slate-700">
+                {
+                  PRODUCT_IMAGE_FOLDERS.find(
+                    (folder) => folder.value === selectedFolder,
+                  )?.label
+                }
+              </p>
+
+              <button
+                type="button"
+                disabled={isLoading}
+                onClick={() => void loadFolderImages(selectedFolder)}
+                className="text-xs font-semibold text-blue-700 hover:text-blue-900 disabled:opacity-50"
+              >
+                Frissítés
+              </button>
+            </div>
+
+            <input
+              type="search"
+              value={search}
+              onChange={(event) => {
+                setSearch(event.target.value);
+                setPage(1);
+              }}
+              placeholder="Keresés a mappa képei között..."
+              className="w-full rounded-md border px-3 py-2 text-sm"
+            />
+
+            {isLoading ? (
+              <p className="py-6 text-center text-sm text-slate-500">
+                Képek betöltése...
+              </p>
+            ) : filteredImages.length === 0 ? (
+              <div className="rounded-lg border border-dashed p-5 text-center">
+                <p className="text-sm text-gray-500">
+                  Nincs a keresésnek megfelelő kép ebben a mappában.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="text-xs text-gray-500">
+                  {filteredImages.length} kép található. Egyszerre {PAGE_SIZE}{" "}
+                  képet jelenítünk meg.
+                </p>
+
+                <div className="grid grid-cols-2 gap-3 rounded-xl bg-gray-50 p-2 sm:grid-cols-3 md:grid-cols-4">
+                  {visibleImages.map((image) => {
+                    const isSelected = value === image.publicUrl;
+
+                    return (
+                      <button
+                        key={image.path}
+                        type="button"
+                        onClick={() => onChange(image.publicUrl)}
+                        className={`group overflow-hidden rounded-lg border bg-white text-left transition ${
+                          isSelected
+                            ? "border-blue-600 ring-2 ring-blue-200"
+                            : "border-gray-200 hover:border-blue-300"
+                        }`}
+                      >
+                        <div className="relative aspect-square">
+                          <Image
+                            src={image.publicUrl}
+                            alt={image.name}
+                            fill
+                            loading="lazy"
+                            className="object-contain p-2"
+                            sizes="160px"
+                          />
+                        </div>
+
+                        <div className="border-t px-2 py-2">
+                          <p
+                            className="truncate text-xs text-gray-700"
+                            title={image.name}
+                          >
+                            {image.name}
+                          </p>
+
+                          {isSelected && (
+                            <p className="mt-1 text-xs font-semibold text-blue-700">
+                              ✓ Kiválasztva
+                            </p>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-between gap-3 pt-2">
+                    <button
+                      type="button"
+                      disabled={currentPage === 1}
+                      onClick={() => setPage((current) => current - 1)}
+                      className="rounded-lg border px-3 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-40"
                     >
-                      {image.name}
-                    </p>
+                      ← Előző
+                    </button>
 
-                    <p className="mt-1 truncate text-[10px] text-gray-400">
-                      {
-                        PRODUCT_IMAGE_FOLDERS.find(
-                          (folder) => folder.value === image.folder,
-                        )?.label
-                      }
-                    </p>
+                    <span className="text-sm text-slate-600">
+                      {currentPage} / {totalPages}. oldal
+                    </span>
 
-                    {isSelected && (
-                      <p className="mt-1 text-xs font-semibold text-blue-700">
-                        ✓ Kiválasztva
-                      </p>
-                    )}
+                    <button
+                      type="button"
+                      disabled={currentPage >= totalPages}
+                      onClick={() => setPage((current) => current + 1)}
+                      className="rounded-lg border px-3 py-2 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                      Következő →
+                    </button>
                   </div>
-                </button>
-              );
-            })}
+                )}
+              </>
+            )}
           </div>
         )}
       </div>
 
+      {/* JELENLEG KIVÁLASZTOTT KÉP */}
       {value && (
         <div>
           <p className="mb-2 text-sm font-semibold">Kiválasztott termékkép</p>
